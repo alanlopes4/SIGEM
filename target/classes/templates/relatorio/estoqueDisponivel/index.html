@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+						<div th:if="${param.error}">
+							<script th:inline="javascript">
+							/*<![CDATA[*/
+								var flag = [[${param.error}]]; 
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.error('Erro na geração do relatório!');
+							        }
+								};
+							/*]]>*/
+						</script>
+						</div>
+						<div th:if="${param.gerado}">
+							<script th:inline="javascript">
+							/*<![CDATA[*/
+								var flag = [[${param.removido}]]; 
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.success('Relatório Gerado com sucesso!');
+							        }
+								};
+							/*]]>*/
+						</script>
+						</div>
+						
+						<div class="row">
+								<h3 class="col-6">Relatório de Estoque disponível</h3>
+								<button type="submit" class="btn btn-primary col-1" disabled>
+									<i class="fa fa-print"></i>
+								</button>
+						</div>
+					
+					
+					
+					<hr/>
+					<table id="tabela_estoque"
+				class="table table-hover table-striped table-bordered table-click">
+				<thead>
+					<tr>
+						<th class="">Código</th>
+						<th class="">Produto</th>
+						<th class="">Marca</th>
+						<th class="">Quantidade disponível</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="produto : ${produtos}">
+						<td th:text="${produto.codigo}"></td>
+						<td th:text="${produto.nome}"></td>
+						<td th:text="${produto.marca}"></td>
+						<td th:text="${produto.quantidade}"></td>
+                    </tr> 
+				</tbody>
+				<tfoot>
+					<tr>
+				      <td colspan="3">Total</td>
+				      <td th:text="${qtdTotalEstoque}"></td>
+				    </tr>
+				</tfoot>
+			</table>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

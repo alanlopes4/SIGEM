@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+						Cadastrar Produto
+					</div>
+					<hr/>
+					<!-- MESSAGES -->
+					<form th:object="${produto}" th:action="@{/produtos/cadastrar}" method="POST"
+						class="form-default form-horizontal" >
+						<div class="form-group row justify-content-center " >
+							<label for="id" class="col-sm-2 col-form-label   text-right">Código</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="id"
+									id="id" class="form-control"
+									th:field="*{id}" 
+									readOnly="readonly"
+									/>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right">Nome Produto</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="nomeProduto"
+									id="nome" class="form-control"
+									th:field="*{nome}" autofocus="autofocus"
+									placeholder="Nome do Produto"
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="marca" class="col-sm-2 col-form-label   text-right">Marca</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="marca"
+									id="marca" class="form-control"
+									th:field="*{marca}" autofocus="autofocus"
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="quantidade" class="col-sm-2 col-form-label   text-right">Quantidade</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="quantidade"
+									th:field="*{quantidade}"
+									id="quantidade" class="form-control "
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="precoUnitario" class="col-sm-2 col-form-label   text-right">Preço Unitário</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="precoUnitario"
+									th:field="*{precoUnitario}"
+									id="precoUnitario" class="form-control "
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('precoUnitario')}" th:errors="*{precoUnitario}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="precoLote" class="col-sm-2 col-form-label   text-right">Preço Lote</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="precoLote"
+									th:field="*{precoLote}"
+									id="precoLote" class="form-control "
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('precoLote')}" th:errors="*{precoLote}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="dataCompra" class="col-sm-2 col-form-label   text-right">Data Compra</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="dataCompra"
+									th:field="*{dataCompra}"
+									id="dataCompra" class="form-control "
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('dataCompra')}" th:errors="*{dataCompra}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="descricao" class="col-sm-2 col-form-label   text-right">Descrição</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="descricao"
+									th:field="*{descricao}"
+									id="descricao" class="form-control "
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" ></div>
+							</div>
+						</div>
+						<hr />
+						<div class="form-group row justify-content-center ">
+							<div class="col-sm-2 text-right">
+								<button type="submit" class="btn btn-lg btn-success">
+									Salvar
+								</button>
+							</div>
+							<div class=" col-sm-2">
+								<a id="alert" class="btn btn-lg btn-primary" th:href="@{/produtos}" >
+									Cancelar </a>
+							</div>
+						</div>
+				</form>
+				</div>
+				</div>
+			<div id="push"></div>
+		</div>
+	</section>
+</body>
+</html>

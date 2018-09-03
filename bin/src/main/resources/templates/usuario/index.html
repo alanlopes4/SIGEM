@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+						<h3 >Procurar Usuário</h3>
+					</div>
+					<hr/>
+					<form  th:object="${usuarioFilter}" th:action="@{/usuarios}" method="POST"
+							class="form-default form-horizontal" >
+							<div class="form-group row justify-content-center ">
+								<label for="nome" class="col-sm-2 col-form-label   text-right">Nome</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="nome"
+										th:field="*{nome}"
+										id="nome" class="form-control "
+										placeholder="Nome completo"
+										/>
+								</div>
+							</div>
+							 <div class="form-group row justify-content-center ">
+								<label for="nomeUsuario" class="col-sm-2 col-form-label   text-right">Nome de usuário</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="nomeUsuario"
+										th:field="*{nomeUsuario}"
+										id="nomeUsuario" class="form-control "
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="nome" class="col-sm-2 col-form-label   text-right">E-mail</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="email"
+										th:field="*{email}"
+										id="email" class="form-control "
+										/>
+								</div>
+							</div>
+			                                         
+							<hr />
+							<div class="form-group row justify-content-center ">
+								<div class="col-sm-2 text-right">
+									<button type="submit"
+										class="btn btn-lg btn-success">Procurar</button>
+								</div>
+								<div class="col-sm-2 text-right">
+									<a class="btn btn-lg btn-success"  th:href="@{/usuarios/cadastrar}" 
+									>Adicionar</a>
+									
+								</div>
+							</div>
+					</form>
+				</div>
+			
+				<table id="tabela_usuarios"
+				class="table table-hover table-striped table-bordered table-click">
+				<thead>
+					<tr>
+						<th class="">Nome</th>
+						<th class="">Nome Usuário</th>
+						<th class="">E-mail</th>
+						<th class="">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="usuario : ${usuarios}">
+						<td th:text="${usuario.nome}"></td>
+						<td th:text="${usuario.nomeUsuario}"></td>
+						<td th:text="${usuario.email}"></td>
+						<td>
+							<div class="btn-group pull-right">
+                                <a class="btn btn-sm btn-primary" th:href="@{usuarios/editar/{id}(id=${usuario.id})}" >Editar</a>
+                                <a class="delete btn btn-sm btn-danger" th:href="@{usuarios/remover/{id}(id=${usuario.id})}">Excluir</a>
+                           </div>
+                        </td>
+                    </tr> 
+				</tbody>
+				<tfoot>
+				
+       
+				</tfoot>
+			</table>
+			</div>
+		</div>
+	</section>
+	<script>
+			$(document).ready(function() {
+			    $('#tabela_usuarios').DataTable();
+			} );
+</script>
+</body>
+
+</html>

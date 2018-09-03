@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/js/alertifyjs/css/alertify.min.css}" />
+ 	
+	<title>SIGEM</title>
+
+</head>
+
+<body>
+	<div>
+		<div class="push"></div>
+		<section layout:fragment="content">
+			Conteudo!
+		</section>
+		<div class="push"></div>
+		<!-- FOOTER -->
+		<footer >
+			<div class="container-fluid">
+				<span >&copy; 2017 SIGEM.</span>
+			</div>
+		</footer>
+	</div>
+	
+	
+	<!-- include javascript in the footer -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>  
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/alertifyjs/alertify.min.js}"></script>
+    
+	
+    
+</body>
+</html>

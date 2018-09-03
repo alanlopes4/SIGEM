@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.2.2" icons="true" generate-combined-fragments="true">  
+  <object id="1" language="java" name="br.com.sigem.controller.ProdutoController" project="Trabalho-PSS" 
+    file="/Trabalho-PSS/src/main/java/br/com/sigem/controller/ProdutoController.java" binary="false" 
+    label="produtoController" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="609" y="0"/>    
+    <execution id="2">      
+      <position height="54" width="125" x="5" y="100"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="br.com.sigem.service.ProdutoService" project="Trabalho-PSS" 
+    file="/Trabalho-PSS/src/main/java/br/com/sigem/service/ProdutoService.java" binary="false" label="produtoService" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="721" y="0"/>    
+    <execution id="4">      
+      <position height="18" width="112" x="134" y="118"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="atualizar(br.com.sigem.model.Produto):br.com.sigem.model.Produto" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>
+</sequence-diagram>

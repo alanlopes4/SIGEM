@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div th:if="${param.sucesso}">
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+								var flag = [[${param.sucesso}]]; //Your Thymleaf variable
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.success('Produto Cadastrado com sucesso!');
+							        }
+								};
+							/*]]>*/
+						</script>
+					</div>
+					<div th:if="${param.atualizado}">
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+								var flag = [[${param.atualizado}]]; //Your Thymleaf variable
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.success('Produto Atualizado com sucesso!');
+							        }
+								};
+							/*]]>*/
+						</script>
+					</div>
+					<div th:if="${param.removido}">
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+								var flag = [[${param.removido}]]; 
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.success('Produto Removido com sucesso!');
+							        }
+								};
+							/*]]>*/
+						</script>
+					</div>
+					<div class="row justify-content-center">
+						<h3 >Procurar produto</h3>
+					</div>
+					<hr/>
+					<form  th:object="${produtoFilter}" th:action="@{/sigem/produtos}" method="POST"
+							class="form-default form-horizontal" >
+							<div class="form-group row justify-content-center " >
+							<label for="codigo" class="col-sm-2 col-form-label   text-right">Código</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="codigo"
+									id="codigo" class="form-control"
+									th:field="*{codigo}" 
+									autofocus="autofocus"
+									/>
+							</div>
+						</div>
+							<div class="form-group row justify-content-center ">
+								<label for="nome" class="col-sm-2 col-form-label   text-right">Nome</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="nome"
+										th:field="*{nome}"
+										id="nome" class="form-control "
+										placeholder="Nome Produto"
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="marca" class="col-sm-2 col-form-label   text-right">Marca</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="marca"
+										th:field="*{marca}"
+										id="marca" class="form-control "
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="dataCompra" class="col-sm-2 col-form-label   text-right">Data Compra (dd/MM/yyyy)</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="dataCompra"
+										th:field="*{dataCompra}"
+										id="dataCompra" class="form-control date"
+										/>
+								</div>
+							</div>
+			                                         
+							<hr />
+							<div class="form-group row justify-content-center ">
+								<div class="col-sm-2 text-right">
+									<button type="submit"
+										class="btn btn-lg btn-success">Procurar</button>
+								</div>
+								<div class="col-sm-2 text-right">
+									<a class="btn btn-lg btn-success"  th:href="@{/sigem/produtos/cadastrar}" 
+									>Adicionar</a>
+									
+								</div>
+							</div>
+					</form>
+				</div>
+			
+				<table id="tabela_produtos"
+				class="table table-hover table-striped table-bordered table-click">
+				<thead>
+					<tr>
+						<th class="">Nome</th>
+						<th class="">Código</th>
+						<th class="">Quantidade</th>
+						<th class="">Preço unitário</th>
+						<th class="">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="produto : ${produtos}">
+						<td th:text="${produto.nome}"></td>
+						<td th:text="${produto.codigo}"></td>
+						<td th:text="${produto.quantidade}"></td>
+						<td th:text="${produto.precoUnitario}"></td>
+						<td>
+							<div class="btn-group pull-right">
+                                <a class="btn btn-sm btn-primary" th:href="@{/sigem/produtos/editar/{id}(id=${produto.id})}" >Editar</a>
+                                <a class="delete btn btn-sm btn-danger" th:href="@{/sigem/produtos/remover/{id}(id=${produto.id})}">Excluir</a>
+                           </div>
+                        </td>
+                    </tr> 
+				</tbody>
+				<tfoot>
+				
+       
+				</tfoot>
+			</table>
+			
+			
+						
+			
+			
+			</div>
+		</div>
+	</section>
+	<script>
+			$(document).ready(function() {
+			    $('#tabela_produtos').DataTable();
+			} );
+</script>
+</body>
+
+</html>

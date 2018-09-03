@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+			<div class="jumbotron">
+			<div class="row justify-content-center">
+						<h3 >Procurar Estoque de produto</h3>
+					</div>
+					<hr/>
+					<form  th:object="${estoqueFilter}" th:action="@{/sigem/estoque}" method="POST"
+							class="form-default form-horizontal" >
+							<div class="form-group row justify-content-center ">
+								<label for="nome" class="col-sm-2 col-form-label   text-right">Nome</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="nome"
+										
+										id="nome" class="form-control "
+										placeholder="Nome Produto"
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="estoque" class="col-sm-2 col-form-label   text-right">Quantidade em estoque</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="estoque"
+										th:field="*{estoque}"
+										id="estoque" class="form-control "
+										/>
+								</div>
+							</div>
+							<hr />
+							<div class="form-group row justify-content-center ">
+								<div class="col-sm-2 text-right">
+									<button type="submit"
+										class="btn btn-lg btn-success" disabled>Procurar</button>
+								</div>
+							</div>
+					</form>
+				</div>
+				</div>
+				<table id="tabela_estoques"
+				class="table table-hover table-striped table-bordered table-click">
+				<thead>
+					<tr>
+						<th class="">Nome</th>
+						<th class="">Estoque Minímo</th>
+						<th class="">Estoque</th>
+						<th class="">Gôndola</th>
+						<th class="">Ação</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="estoque : ${estoques}">
+						<td >Nome do produto</td>
+						<td th:text="${estoque.estoqueMinimo}"></td>
+						<td th:text="${estoque.estoque}"></td>
+						<td th:text="${estoque.gondula}"></td>
+						<td>
+							<div class="btn-group pull-right">
+                                <a class="btn btn-sm btn-primary" th:href="@{/sigem/estoque/editar/{id}(id=${estoque.id})}" >Editar</a>
+                           </div>
+                        </td>
+                    </tr> 
+				</tbody>
+				<tfoot>
+				
+       
+				</tfoot>
+			</table>
+		</div>
+	</section>
+	<script>
+			$(document).ready(function() {
+			    $('#tabela_estoques').DataTable();
+			} );
+</script>
+</body>
+
+</html>

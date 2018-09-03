@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+						<h3>Cadastrar Produto</h3>
+					</div>
+					<hr/>
+					<!-- MESSAGES -->
+					<form th:object="${produto}" th:action="@{/sigem/produtos/cadastrar}" method="POST"
+						class="form-default form-horizontal" >
+						<div class="form-group row justify-content-center " >
+							<label for="codigo" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Código</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="codigo"
+									id="codigo" class="form-control"
+									th:field="*{codigo}" 
+									autofocus="autofocus"
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Nome Produto</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="nomeProduto"
+									id="nome" class="form-control"
+									th:field="*{nome}" 
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="marca" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Marca</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="marca"
+									id="marca" class="form-control"
+									th:field="*{marca}" 
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="quantidade" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Quantidade</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="quantidade"
+									th:field="*{quantidade}"
+									id="quantidade" class="form-control "
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="precoUnitario" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Preço Unitário</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="precoUnitario"
+									th:field="*{precoUnitario}"
+									id="precoUnitario" class="form-control "
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('precoUnitario')}" th:errors="*{precoUnitario}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="precoLote" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Preço Lote</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="precoLote"
+									th:field="*{precoLote}"
+									id="precoLote" class="form-control "
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('precoLote')}" th:errors="*{precoLote}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="dataCompra" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Data Compra</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="dataCompra"
+									th:field="*{dataCompra}"
+									id="dataCompra" class="form-control date"
+									placeholder="14/10/1996"
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('dataCompra')}" th:errors="*{dataCompra}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="pericivel" class="col-sm-2 col-form-label   text-right">Pericivel</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<div class="form-check  ">
+									<input class="form-check-input" type="checkbox"
+										id="pericivel"  name="pericivel" th:field="*{pericivel}"> 
+								</div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="dataValidade" class="col-sm-2 col-form-label   text-right">Data Validade</label>
+							<div class="controls col-sm-4">
+								<input type="text" name="dataValidade"
+									th:field="*{validade}"
+									id="dataValidade" class="form-control date"
+									placeholder="14/10/1996"
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('validade')}" th:errors="*{validade}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="descricao" class="col-sm-2 col-form-label   text-right">Descrição</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<textarea class="form-control"  name="descricao" id="descricao" rows="3"
+									th:field="*{descricao}"></textarea>
+								<div style="color: red;" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" ></div>
+							</div>
+						</div>
+						<hr />
+						<div class="form-group row justify-content-center ">
+							<div class="col-sm-2 text-right">
+								<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#confirmacaoModal">
+									Salvar
+								</button>
+							</div>
+							<div class=" col-sm-2">
+								<a id="alert" class="btn btn-lg btn-primary" th:href="@{/sigem/produtos}" >
+									Cancelar </a>
+							</div>
+						</div>
+						
+						
+						<!--  MODAL -->
+						<div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="confirmacaoModalLabel">Confirmação</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        Tem certeza disso?
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						        <button type="submit" class="btn btn-primary">Confirmar</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						
+						
+				</form>
+				</div>
+				</div>
+			<div id="push"></div>
+		</div>
+	</section>
+	<script >
+	$(document).ready(function(){
+		alert("Olaa");
+	});
+	
+		$('#pericivel').on('click', function(){
+			alert(this);
+		});
+	
+// 	document.getElementById('pericivel').onchange = function() {
+// 	    document.getElementById('dataValidade').disabled = !this.checked;
+// 	};
+	
+	
+	</script>
+</body>
+</html>

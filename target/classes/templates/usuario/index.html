@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div th:if="${param.sucesso}">
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+								var flag = [[${param.sucesso}]]; 
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.success('Usuário Cadastrado com sucesso!');
+							        }
+								};
+							/*]]>*/
+						</script>
+<!-- 						<div class="alert alert-success">Usuário Cadastrado com sucesso! -->
+<!-- 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
+<!-- 						    <span aria-hidden="true">&times;</span> -->
+<!-- 						  </button> -->
+<!-- 						</div> -->
+					</div>
+					<div th:if="${param.atualizado}">
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+								var flag = [[${param.atualizado}]]; 
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.success('Usuário Atualizado com sucesso!');
+							        }
+								};
+							/*]]>*/
+						</script>
+<!-- 						<div class="alert alert-success">Usuário Atualizado com sucesso! -->
+<!-- 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
+<!-- 						    <span aria-hidden="true">&times;</span> -->
+<!-- 						  </button> -->
+<!-- 						</div> -->
+					</div>
+					<div th:if="${param.removido}">
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+								var flag = [[${param.removido}]]; 
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.success('Usuário Removido com sucesso!');
+							        }
+								};
+							/*]]>*/
+						</script>
+<!-- 						<div class="alert alert-success">Usuário Removido com sucesso! -->
+<!-- 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
+<!-- 						    <span aria-hidden="true">&times;</span> -->
+<!-- 						  </button> -->
+<!-- 						</div> -->
+					</div>
+					<div class="row justify-content-center">
+						<h3 >Procurar Usuário</h3>
+					</div>
+					<hr/>
+					<form  th:object="${usuarioFilter}" th:action="@{/sigem/usuarios}" method="POST"
+							class="form-default form-horizontal" >
+							<div class="form-group row justify-content-center ">
+								<label for="nome" class="col-sm-2 col-form-label   text-right">Nome</label>
+								<div class="controls col-sm-4">
+									<input type="text" name="nome"
+										th:field="*{nome}"
+										id="nome" class="form-control "
+										autofocus="autofocus"
+										/>
+								</div>
+							</div>
+							 <div class="form-group row justify-content-center ">
+								<label for="nomeUsuario" class="col-sm-2 col-form-label   text-right">Nome de usuário</label>
+								<div class="controls col-sm-4">
+									<input type="text" name="nomeUsuario"
+										th:field="*{nomeUsuario}"
+										id="nomeUsuario" class="form-control "
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center " >
+							<label for="cpf" class="col-sm-2 col-form-label   text-right">CPF</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="cpf"
+									id="cpf" class="form-control cpf"
+									th:field="*{cpf}" 
+									/>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="cargo" class="col-sm-2 col-form-label   text-right">Cargo</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="cargo"
+									id="cargo" class="form-control"
+									th:field="*{cargo}" 
+									/>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="dataNascimento" class="col-sm-2 col-form-label   text-right">Data de Nascimento</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="dataNascimento"
+									id="dataNascimento" class="form-control date"
+									th:field="*{dataNascimento}" 
+									/>
+							</div>
+						</div>
+							<div class="form-group row justify-content-center ">
+								<label for="nome" class="col-sm-2 col-form-label   text-right">E-mail</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="email"
+										th:field="*{email}"
+										id="email" class="form-control "
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="ativo" class="col-sm-2 col-form-label   text-right">Ativo</label>
+								<div class="controls col-sm-4 col-sm-4">
+								    <input id="ativo" checked type="checkbox" value="true" data-onstyle="success" data-offstyle="info" data-toggle="toggle" data-on="Sim" data-off="Não" th:field="*{ativo}">
+								</div>
+							</div>
+			                                         
+							<hr />
+							<div class="form-group row justify-content-center ">
+								<div class="col-sm-2 text-right">
+									<button type="submit"
+										class="btn btn-lg btn-success">Procurar</button>
+								</div>
+								<div class="col-sm-2 text-right">
+									<a class="btn btn-lg btn-success"  th:href="@{/sigem/usuarios/cadastrar}" 
+									>Adicionar</a>
+									
+								</div>
+							</div>
+					</form>
+				</div>
+			
+				<table id="tabela_usuarios"
+				class="table table-hover table-striped table-bordered table-click">
+				<thead>
+					<tr>
+						<th class="">Nome</th>
+						<th class="">Nome Usuário</th>
+						<th class="">E-mail</th>
+						<th class="">Nascimento</th>
+						<th class="">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="usuario : ${usuarios}">
+						<td th:text="${usuario.nome}"></td>
+						<td th:text="${usuario.nomeUsuario}"></td>
+						<td th:text="${usuario.email}"></td>
+						<td th:text="${usuario.dataNascimento}"></td>
+						<td>
+							<div class="btn-group pull-right">
+                                <a sec:authorize="hasRole('ROLE_USUARIOS_EDITAR')" class="btn btn-sm btn-primary" th:href="@{/sigem/usuarios/editar/{id}(id=${usuario.id})}" >Editar</a>
+                                <a sec:authorize="hasRole('ROLE_USUARIOS_EXCLUIR')" class="delete btn btn-sm btn-danger" th:href="@{/sigem/usuarios/remover/{id}(id=${usuario.id})}">Excluir</a>
+                           </div>
+                        </td>
+                    </tr> 
+				</tbody>
+				<tfoot>
+				
+       
+				</tfoot>
+			</table>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

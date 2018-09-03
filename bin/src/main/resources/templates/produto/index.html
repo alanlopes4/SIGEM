@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+						<h3 >Procurar Produto</h3>
+					</div>
+					<hr/>
+					<form  th:object="${usuarioFilter}" th:action="@{/usuarios}" method="POST"
+							class="form-default form-horizontal" >
+							<div class="form-group row justify-content-center ">
+								<label for="nome" class="col-sm-2 col-form-label   text-right">Nome</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="nome"
+										th:field="*{nome}"
+										id="nome" class="form-control "
+										placeholder="Nome Produto"
+										/>
+								</div>
+							</div>
+							 <div class="form-group row justify-content-center ">
+								<label for="codigoProduto" class="col-sm-2 col-form-label   text-right">Código Produto</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="codigoProduto"
+										th:field="*{codigoProduto}"
+										id="codigoProduto" class="form-control "
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="lote" class="col-sm-2 col-form-label   text-right">Lote</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="lote"
+										th:field="*{lote}"
+										id="lote" class="form-control "
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="marca" class="col-sm-2 col-form-label   text-right">Marca</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="marca"
+										th:field="*{marca}"
+										id="marca" class="form-control "
+										/>
+								</div>
+							</div>
+			                                         
+							<hr />
+							<div class="form-group row justify-content-center ">
+								<div class="col-sm-2 text-right">
+									<button type="submit"
+										class="btn btn-lg btn-success">Procurar</button>
+								</div>
+								<div class="col-sm-2 text-right">
+									<a class="btn btn-lg btn-success"  th:href="@{/produtos/cadastrar}" 
+									>Adicionar</a>
+									
+								</div>
+							</div>
+					</form>
+				</div>
+			
+				<table id="tabela_produtos"
+				class="table table-hover table-striped table-bordered table-click">
+				<thead>
+					<tr>
+						<th class="">Nome</th>
+						<th class="">Código Produto</th>
+						<th class="">Lote</th>
+						<th class="">Marca</th>
+						<th class="">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="produto : ${produtos}">
+						<td th:text="${produto.nome}"></td>
+						<td th:text="${produto.id}"></td>
+						<td th:text="${produto.lote}"></td>
+						<td th:text="${produto.marca}"></td>
+						<td>
+							<div class="btn-group pull-right">
+                                <a class="btn btn-sm btn-primary" th:href="@{produtos/editar/{id}(id=${produto.id})}" >Editar</a>
+                                <a class="delete btn btn-sm btn-danger" th:href="@{produtos/remover/{id}(id=${produti.id})}">Excluir</a>
+                           </div>
+                        </td>
+                    </tr> 
+				</tbody>
+				<tfoot>
+				
+       
+				</tfoot>
+			</table>
+			</div>
+		</div>
+	</section>
+	<script>
+			$(document).ready(function() {
+			    $('#tabela_produtos').DataTable();
+			} );
+</script>
+</body>
+
+</html>

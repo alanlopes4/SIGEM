@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+			<div class="jumbotron text-center">
+				<h3>SIGEM. Seja Bem-vindo, <label th:text="${nomeUsuario}"></label>.</h3>
+			</div>
+		</div>
+		</div>
+	</section>
+</body>
+
+</html>

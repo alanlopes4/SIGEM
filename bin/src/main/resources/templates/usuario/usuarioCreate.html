@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+						Cadastrar Usuario
+					</div>
+					<hr/>
+					<!-- MESSAGES -->
+					<form th:object="${usuario}" th:action="@{/usuarios/cadastrar}" method="POST"
+						class="form-default form-horizontal" >
+						<div class="form-group row justify-content-center " >
+							<label for="nome" class="col-sm-2 col-form-label   text-right">ID</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="id"
+									id="id" class="form-control"
+									th:field="*{id}" 
+									readOnly="readonly"
+									/>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="nome" class="col-sm-2 col-form-label   text-right">Nome</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="nome"
+									id="nome" class="form-control"
+									th:field="*{nome}" autofocus="autofocus"
+									placeholder="Nome completo"
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="nomeUsuario" class="col-sm-2 col-form-label   text-right">Nome de Usuário</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="nomeUsuario"
+									id="nomeUsuario" class="form-control"
+									th:field="*{nomeUsuario}" autofocus="autofocus"
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('nomeUsuario')}" th:errors="*{nomeUsuario}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="email" class="col-sm-2 col-form-label   text-right">E-mail</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="email"
+									th:field="*{email}"
+									id="email" class="form-control "
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="confirmarEmail" class="col-sm-2 col-form-label   text-right">Confirmar E-mail</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="confirmarEmail"
+									th:field="*{confirmarEmail}"
+									id="confirmarEmail" class="form-control "
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('confirmarEmail')}" th:errors="*{confirmarEmail}" ></div>
+							</div>
+							
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="senha" class="col-sm-2 col-form-label   text-right">Senha</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="senha"
+									th:field="*{senha}"
+									id="senha" class="form-control "
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" ></div>
+							</div>
+						</div>
+		                <div class="form-group row justify-content-center ">
+							<label for="confirmarSenha" class="col-sm-2 col-form-label   text-right">Confirmar senha</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="confirmarSenha"
+									id="confirmarSenha" class="form-control"
+									th:field="*{confirmarSenha}" autofocus="autofocus"
+									/>
+								<div style="color: red;" th:if="${#fields.hasErrors('confirmarSenha')}" th:errors="*{confirmarSenha}" ></div>
+							</div>
+						</div>                               
+						<hr />
+						<div class="form-group row justify-content-center ">
+							<div class="col-sm-2 text-right">
+								<button type="submit" class="btn btn-lg btn-success">
+									Salvar
+								</button>
+							</div>
+							<div class=" col-sm-2">
+								<a id="alert" class="btn btn-lg btn-primary" th:href="@{/usuarios}" >
+									Cancelar </a>
+							</div>
+						</div>
+				</form>
+				</div>
+				</div>
+			<div id="push"></div>
+		</div>
+	</section>
+</body>
+</html>

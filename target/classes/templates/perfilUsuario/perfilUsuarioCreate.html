@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+					<h3>Cadastrar Perfil
+						Usuário</h3></div>
+					<hr />
+					<!-- MESSAGES -->
+					<form th:object="${perfilUsuario}"
+						th:action="@{/sigem/perfilUsuarios/cadastrar}" method="POST"
+						class="form-default form-horizontal">
+						<div class="form-group row justify-content-center ">
+							<label for="id" class="col-sm-2 col-form-label   text-right">ID</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="id" id="id" class="form-control"
+									th:field="*{id}" readOnly="readonly" />
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="nome" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Nome</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="nome" id="nome" class="form-control"
+									th:field="*{nome}" autofocus="autofocus"
+									placeholder="Nome completo" />
+								<div style="color: red;" th:if="${#fields.hasErrors('nome')}"
+									th:errors="*{nome}"></div>
+							</div>
+						</div>
+						<div class="form-group row  ">
+							<label for="permissao"
+								class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Permissões:</label>
+						</div>
+						<div class="row justify-content-center">
+						<div class="form-group col-md-3">
+							<div class="form-check ">
+								<input class="form-check-input" type="checkbox"
+									id="check-produtos" value="ROLE_PRODUTOS" name="permissoes" th:field="*{permissoes}" disabled> <label
+									class="form-check-label" for="check-produtos" >Produtos</label>
+							</div>
+							<div class="form-check form- ">
+								<input class="form-check-input" type="checkbox"
+									id="check-produtos-consultar" value="ROLE_PRODUTOS_CONSULTAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-produtos-consultar"  >Consultar</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-produtos-cadastrar" value="ROLE_PRODUTOS_CADASTRAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-produtos-cadastrar" >Cadastrar</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-produtos-remover" value="ROLE_PRODUTOS_EXCLUIR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-produtos-remover" >Excluir</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									id="check-produtos-editar" value="ROLE_PRODUTOS_EDITAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-produtos-editar">Editar</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									id="check-produtos-baixa" value="ROLE_PRODUTOS_BAIXA" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-produtos-baixa">Baixa de produtos</label>
+							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-usuarios" value="ROLE_USUARIOS" name="permissoes" th:field="*{permissoes}" disabled> <label
+									class="form-check-label" for="check-usuarios">Usuários</label>
+							</div>
+							<div class="form-check ">
+								<input class="form-check-input" type="checkbox"
+									id="check-usuarios-consultar" value="ROLE_USUARIOS_CONSULTAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-usuarios-consultar">Consultar</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-usuarios-cadastrar" value="ROLE_USUARIOS_CADASTRAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-usuarios-cadastrar">Cadastrar</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-usuarios-remover" value="ROLE_USUARIOS_EXCLUIR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-usuarios-remover">Excluir</label>
+							</div>
+							<div class="form-check ">
+								<input class="form-check-input" type="checkbox"
+									id="check-usuarios-editar" value="ROLE_USUARIOS_EDITAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-usuarios-editar">Editar</label>
+							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="perfilUsuario" value="ROLE_PERFIL" name="permissoes" th:field="*{permissoes}" disabled> <label
+									class="form-check-label" for="perfilUsuario">Perfil de usuário</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="perfilUsuario-cadastrar" value="ROLE_PERFIL_CADASTRAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="perfilUsuario-cadastrar">Cadastrar</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="perfilUsuario_consultar" value="ROLE_PERFIL_CONSULTAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="perfilUsuario-consultar">Consultar</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="perfilUsuario-remover" value="ROLE_PERFIL_EXCLUIR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="perfilUsuario-remover">Excluir</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="perfilUsuario-editar" value="ROLE_PERFIL_EDITAR" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="perfilUsuario-editar">Editar</label>
+							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-relatorios" value="ROLE_RELATORIOS" name="permissoes" th:field="*{permissoes}" disabled> <label
+									class="form-check-label" for="check-relatorios">Relatórios</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-relatorios-entradaproduto" value="ROLE_RELATORIOS_ENTRADAPRODUTO" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-relatorios-entradaproduto">Entrada de produtos</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-relatorios-historicopreco" value="ROLE_RELATORIOS_HISTORICOPRECO" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-relatorios-historicopreco">Histórico de preços</label>
+							</div>
+							<div class="form-check  ">
+								<input class="form-check-input" type="checkbox"
+									id="check-relatorios-estoquedisponivel" value="ROLE_RELATORIOS_ESTOQUEDISPONIVEL" name="permissoes" th:field="*{permissoes}"> <label
+									class="form-check-label" for="check-relatorios-estoquedisponivel">Estoque disponível</label>
+							</div>
+						</div>
+						</div>
+						<div style="color: red;" th:if="${#fields.hasErrors('permissoes')}" th:errors="*{permissoes}" ></div>
+						<hr />
+						<div class="form-group row justify-content-center ">
+							<div class="col-sm-2 text-right">
+								<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#confirmacaoModal">
+									Salvar</button>
+							</div>
+							<div class=" col-sm-2">
+								<a id="alert" class="btn btn-lg btn-primary"
+									th:href="@{/sigem/perfilUsuarios}"> Cancelar </a>
+							</div>
+						</div>
+						
+						
+						
+						<!--  MODAL -->
+						<div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="confirmacaoModalLabel">Confirmação</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        Tem certeza disso?
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						        <button type="submit" class="btn btn-primary">Confirmar</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						
+						
+					</form>
+				</div>
+			</div>
+			<div id="push"></div>
+		</div>
+	</section>
+</body>
+</html>
