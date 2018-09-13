@@ -59,6 +59,66 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
+							<label for="rua" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Rua</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="rua"
+									id="rua" class="form-control "
+									th:field="*{endereco.rua}" 
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('endereco.rua')}" th:errors="*{endereco.rua}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="numero" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Número</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="numero"
+									id="numero" class="form-control "
+									th:field="*{endereco.numero}" 
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('endereco.numero')}" th:errors="*{endereco.numero}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="complemento" class="col-sm-2 col-form-label   text-right">Complemento</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="complemento"
+									id="complemento" class="form-control "
+									th:field="*{endereco.complemento}" 
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('endereco.complemento')}" th:errors="*{endereco.complemento}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="bairro" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Bairro</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="bairro"
+									id="bairro" class="form-control "
+									th:field="*{endereco.bairro}" 
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('endereco.bairro')}" th:errors="*{endereco.bairro}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="cidade" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Cidade</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="cidade"
+									id="cidade" class="form-control "
+									th:field="*{endereco.cidade}" 
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('endereco.cidade')}" th:errors="*{endereco.cidade}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
+							<label for="cep" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>CEP</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="cep"
+									id="cep" class="form-control "
+									th:field="*{endereco.CEP}" 
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('endereco.CEP')}" th:errors="*{endereco.CEP}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center " >
 							<label for="cargo" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Cargo</label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="cargo"
@@ -119,7 +179,7 @@
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('confirmarSenha')}" th:errors="*{confirmarSenha}" ></div>
 							</div>
-						</div>   
+						</div> 
 						<div class="form-group row justify-content-center ">
 							<label for="perfilUsuario" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Perfil de usuário</label>
 							<div class="controls col-sm-4 col-sm-4">

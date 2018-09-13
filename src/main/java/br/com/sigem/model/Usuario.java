@@ -34,6 +34,8 @@ public class Usuario {
 	@Column(nullable = false)
 	@NotBlank(message = "Nome do usuário é uma informação obrigatória")
 	private String nomeUsuario;
+	@Embedded
+	private Endereco endereco;
 	@Column(nullable = false)
 	@Email(message = "Entre com um email válido")
 	@NotBlank(message = "Email é uma informação obrigatória")
@@ -192,6 +194,14 @@ public class Usuario {
     public void setPermissoes(Set<Permissao> permissoes) {
         this.permissoes = permissoes;
     }
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	@Override
 	public int hashCode() {
