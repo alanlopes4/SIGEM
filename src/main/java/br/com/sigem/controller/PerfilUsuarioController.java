@@ -102,7 +102,7 @@ public class PerfilUsuarioController {
     	return new ModelAndView("redirect:/sigem/perfilUsuarios").addObject("removido", true);
     }
  
-    @PostMapping
+    @PostMapping 
     public ModelAndView pesquisar(PerfilUsuarioFilter perfilUsuarioFilter){
     	ModelAndView mv = new ModelAndView("perfilUsuario/index");
     	mv.addObject("perfilUsuariofilter", perfilUsuarioFilter);
@@ -113,8 +113,10 @@ public class PerfilUsuarioController {
             mv.addObject("perfilUsuarios",perfis);
         }
     	
+        
     	return mv;
     }
-	
+	 
+    
 	
 }
