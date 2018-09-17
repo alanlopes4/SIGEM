@@ -1,6 +1,7 @@
 package br.com.sigem.controller;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -105,7 +106,12 @@ public class PerfilUsuarioController {
     public ModelAndView pesquisar(PerfilUsuarioFilter perfilUsuarioFilter){
     	ModelAndView mv = new ModelAndView("perfilUsuario/index");
     	mv.addObject("perfilUsuariofilter", perfilUsuarioFilter);
-    	mv.addObject("perfilUsuarios", perfilUsuarioService.filtrar(perfilUsuarioFilter));
+        List<PerfilUsuario>perfis=perfilUsuarioService.filtrar(perfilUsuarioFilter);
+        if (perfis != null && perfis.size()==0){
+            mv.addObject("naoencontrado", true);
+        }else {
+            mv.addObject("perfilUsuarios",perfis);
+        }
     	
     	return mv;
     }
