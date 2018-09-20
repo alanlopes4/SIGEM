@@ -32,6 +32,10 @@ public class ProdutoService {
 		return produtoRepository.findAll();
 	}
 	
+	public List<Produto> listarTodosAtivos(){
+		return produtoRepository.findByAtivo(1);
+	}
+	
 	public Produto buscarPorId(Long id) {
         return produtoRepository.findById(id).orElse(null);
     }
