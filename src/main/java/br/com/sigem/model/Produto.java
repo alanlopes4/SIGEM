@@ -28,7 +28,7 @@ public class Produto {
 	private Long id;
 	
 	@NotNull(message = "Código é uma informação obrigatória")
-	private Integer codigo;
+	private String codigo;
 	
 	@Column(nullable = false)
 	@NotBlank(message = "Nome é uma informação obrigatória")
@@ -101,11 +101,11 @@ public class Produto {
 		this.id = id;
 	}
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 

@@ -78,24 +78,23 @@
 				class="table table-hover table-striped table-bordered table-click">
 				<thead>
 					<tr>
+						<th class="">Data de compra</th>
 						<th class="">Produto</th>
 						<th class="">Código</th>
-						<th class="">Quantidade comprada</th>
 						<th class="">Valor de compra</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="entrada : ${entradas}">
+						<td th:text="${entrada.produto.dataCompra}"></td>
 						<td th:text="${entrada.produto.nome}"></td>
 						<td th:text="${entrada.produto.codigo}"></td>
-						<td th:text="${entrada.qtdComprada}"></td>
 						<td th:text="${entrada.precoLoteComprado}"></td>
                     </tr> 
 				</tbody>
 				<tfoot>
 				    <tr>
-				      <td colspan="2">Total</td>
-				      <td th:text="${qtdTotalCompra}"></td>
+				      <td colspan="3">Total</td>
 				      <td th:text="${valorTotalCompra}"></td>
 				      
 				    </tr>

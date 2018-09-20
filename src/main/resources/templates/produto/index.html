@@ -122,7 +122,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="produto : ${produtos}">
+					<tr th:if="${not #lists.isEmpty(produtos)}" th:each="produto : ${produtos}">
 						<td th:text="${produto.nome}"></td>
 						<td th:text="${produto.codigo}"></td>
 						<td th:text="${produto.quantidade}"></td>
@@ -133,11 +133,17 @@
                                 <a class="delete btn btn-sm btn-danger" th:href="@{/sigem/produtos/remover/{id}(id=${produto.id})}">Excluir</a>
                            </div>
                         </td>
-                    </tr> 
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(produtos)}">
+                    	<td colspan="5">
+	                    	<div class="alert alert-info" style="background-color: #f1f3f5;" role="alert">
+							  Nenhum registro encontrado
+							</div> 
+						</td>
+                    </tr>
+                    
 				</tbody>
 				<tfoot>
-				
-       
 				</tfoot>
 			</table>
 			

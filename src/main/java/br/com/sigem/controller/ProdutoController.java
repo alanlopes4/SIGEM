@@ -31,7 +31,7 @@ public class ProdutoController {
     public ModelAndView findAll(@RequestParam("produtoFilter")Optional<ProdutoFilter> produtoFilter) {
 		
         ModelAndView modelView = new ModelAndView("produto/index");
-        modelView.addObject("produtos", produtoService.listaTodos());
+        modelView.addObject("produtos", produtoService.listarTodosAtivos());
         modelView.addObject("produtoFilter", produtoFilter);
         
         return modelView;
@@ -51,7 +51,7 @@ public class ProdutoController {
     public ModelAndView save(@Valid Produto produto, BindingResult result) {
     	
     	
-    	if(produtoService.verificarValidade(produto.getValidade())){
+    	if(produto.getValidade() != null && produtoService.verificarValidade(produto.getValidade())){
     		result.addError(new FieldError("produto", "validade", "Data inferior ao data atual"));
     	}
          
