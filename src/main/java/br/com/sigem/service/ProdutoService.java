@@ -73,5 +73,9 @@ public class ProdutoService {
 	public List<Produto> filtrar(ProdutoFilter produtoFilter){
 	    	return produtoRepository.filtrar(produtoFilter);
 	   }
+	
+	public boolean verificarValidade(LocalDate validade) {
+		return validade.minusDays(5).isEqual(LocalDate.now());
+	}
 
 }
