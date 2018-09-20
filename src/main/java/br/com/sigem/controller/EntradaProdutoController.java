@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ibm.icu.text.DecimalFormat;
+
 import br.com.sigem.model.relatorio.EntradaProduto;
 import br.com.sigem.service.EntradaProdutoService;
 
@@ -30,10 +32,9 @@ public class EntradaProdutoController {
 		
 		List<EntradaProduto> entradas = entradaProdutoService.listarTodos();
 		double valorTotalCompra = entradas.stream().mapToDouble(EntradaProduto::getPrecoLoteComprado).sum();
-		int qtdTotalCompra = entradas.stream().mapToInt(EntradaProduto::getQtdComprada).sum();
+	    
 		mv.addObject("entradas", entradas);
-		mv.addObject("valorTotalCompra", qtdTotalCompra*valorTotalCompra);
-		mv.addObject("qtdTotalCompra", qtdTotalCompra);
+		mv.addObject("valorTotalCompra", String.format("%.2f",valorTotalCompra));
 		
 		return mv;
 	}
