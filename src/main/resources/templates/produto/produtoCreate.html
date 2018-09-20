@@ -19,7 +19,7 @@
 					<form th:object="${produto}" th:action="@{/sigem/produtos/cadastrar}" method="POST"
 						class="form-default form-horizontal" >
 						<div class="form-group row justify-content-center " >
-							<label for="codigo" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Código</label>
+							<label for="codigo" class="col-sm-2 col-form-label   text-right">Código<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="codigo"
 									id="codigo" class="form-control"
@@ -30,7 +30,7 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Nome Produto</label>
+							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right">Nome Produto<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="nomeProduto"
 									id="nome" class="form-control"
@@ -40,7 +40,7 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="marca" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Marca</label>
+							<label for="marca" class="col-sm-2 col-form-label   text-right">Marca<span style="color: red;">*</span>Marca</label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="marca"
 									id="marca" class="form-control"
@@ -121,7 +121,7 @@
 						<hr />
 						<div class="form-group row justify-content-center ">
 							<div class="col-sm-2 text-right">
-								<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#confirmacaoModal">
+								<button id="btn_salvar" type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#confirmacaoModal">
 									Salvar
 								</button>
 							</div>
@@ -130,6 +130,23 @@
 									Cancelar </a>
 							</div>
 						</div>
+						
+					
+							<script th:inline="javascript">
+								/*<![CDATA[*/
+									
+								    window.onload = function() {
+								    	$('#btn_salvar').on('click', function(){
+								    		var dataValidade = $('#dataValidade').val();
+								    		var d1 = ""+Date.parseExact(dataValidade, "d/M/yyyy");
+								    		var d2 = ""+Date.today().add(5).days();
+								    		if(d1 === d2){
+								    			$("#spanValidade").html("Atenção. Este produto está próximo da data de validade.<br>");
+								    		}
+								    	});
+									};
+								/*]]>*/
+							</script>
 						
 						
 						<!--  MODAL -->
@@ -143,6 +160,7 @@
 						        </button>
 						      </div>
 						      <div class="modal-body">
+						      	<span id="spanValidade" style="color:red;"></span>
 						        Tem certeza disso?
 						      </div>
 						      <div class="modal-footer">
@@ -159,21 +177,9 @@
 				</div>
 			<div id="push"></div>
 		</div>
+		
+		
 	</section>
-	<script >
-	$(document).ready(function(){
-		alert("Olaa");
-	});
 	
-		$('#pericivel').on('click', function(){
-			alert(this);
-		});
-	
-// 	document.getElementById('pericivel').onchange = function() {
-// 	    document.getElementById('dataValidade').disabled = !this.checked;
-// 	};
-	
-	
-	</script>
 </body>
 </html>
