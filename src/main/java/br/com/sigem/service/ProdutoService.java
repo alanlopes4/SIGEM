@@ -75,7 +75,7 @@ public class ProdutoService {
 	   }
 	
 	public boolean verificarValidade(LocalDate validade) {
-		return validade.minusDays(5).isEqual(LocalDate.now());
+		return validade.isBefore(LocalDate.now());
 	}
 
 }

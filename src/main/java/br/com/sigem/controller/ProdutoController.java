@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,11 @@ public class ProdutoController {
  
     @PostMapping("/cadastrar")
     public ModelAndView save(@Valid Produto produto, BindingResult result) {
+    	
+    	
+    	if(produtoService.verificarValidade(produto.getValidade())){
+    		result.addError(new FieldError("produto", "validade", "Data inferior ao data atual"));
+    	}
          
         if(result.hasErrors()) {
             return add(produto);
