@@ -171,6 +171,13 @@
                                 <a sec:authorize="hasRole('ROLE_USUARIOS_EXCLUIR')" class="delete btn btn-sm btn-danger" th:href="@{/sigem/usuarios/remover/{id}(id=${usuario.id})}">Excluir</a>
                            </div>
                         </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(produtos)}">
+                    	<td colspan="5">
+	                    	<div class="alert alert-info" style="background-color: #f1f3f5;" role="alert">
+							  Nenhum registro encontrado
+							</div> 
+						</td>
                     </tr> 
 				</tbody>
 				<tfoot>
