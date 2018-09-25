@@ -23,7 +23,7 @@ import br.com.sigem.web.EsqueceuSenhaDTO;
 import br.com.sigem.web.ResetarSenhaDTO;
 
 @Controller
-@RequestMapping("/reset-password")
+@RequestMapping("/resetarSenha")
 public class ResetarSenhaController {
 	
 	@Autowired 
