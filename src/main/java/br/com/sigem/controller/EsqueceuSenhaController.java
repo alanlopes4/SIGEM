@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/forgot-password")
+@RequestMapping("/esqueceuSenha")
 public class EsqueceuSenhaController {
 	
 	@Autowired 
@@ -37,7 +37,7 @@ public class EsqueceuSenhaController {
     private EmailService emailService;
 
     @ModelAttribute("forgotPasswordForm")
-    public EsqueceuSenhaDTO forgotPasswordDto() {
+    public EsqueceuSenhaDTO esqueceuSenhaDto() {
         return new EsqueceuSenhaDTO();
     }
 
@@ -45,8 +45,8 @@ public class EsqueceuSenhaController {
     public ModelAndView displayForgotPasswordPage() {
     	
     	ModelAndView mv = new ModelAndView("login/recuperarSenha/esqueceuSenha");
-    	
         return mv;
+        
     }
 
     @PostMapping
@@ -54,16 +54,14 @@ public class EsqueceuSenhaController {
                                             BindingResult result,
                                             HttpServletRequest request) {
 
-    	ModelAndView mv = new ModelAndView("login/recuperarSenha/esqueceuSenha");
-    	
         if (result.hasErrors()){
-            return mv;
+            return new ModelAndView("redirect:/sigem/login").addObject("erro", true);
         }
 
         Usuario usuario = usuarioService.findUsuariobyEmail(form.getEmail());
         if (usuario == null){
             result.rejectValue("email", null, "We could not find an account for that e-mail address.");
-            return mv;
+            return new ModelAndView("redirect:/sigem/login").addObject("erro", true);
         }
 
         TokenResetarSenha token = new TokenResetarSenha();
@@ -73,7 +71,7 @@ public class EsqueceuSenhaController {
         tokenRepository.save(token);
 
         Email mail = new Email();
-        mail.setRemetente("no-reply@memorynotfound.com");
+        mail.setRemetente("no-reply@msigemuem.com");
         mail.setDestinatario(usuario.getEmail());
         mail.setAssunto("Password reset request");
 
@@ -86,7 +84,7 @@ public class EsqueceuSenhaController {
         mail.setModelo(model);
         emailService.sendEmail(mail);
 
-        return mv;
+        return new ModelAndView("redirect:/sigem/login").addObject("sucesso", true);
 
     }
 }
