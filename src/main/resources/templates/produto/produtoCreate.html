@@ -25,36 +25,40 @@
 									id="codigo" class="form-control"
 									th:field="*{codigo}" 
 									autofocus="autofocus"
-									/>
+									placeholder="Código de barras"
+									/>								
 								<div style="color: red;" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right">Nome produto<span style="color: red;">*</span></label>
+							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right">Nome do produto<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="nomeProduto"
 									id="nome" class="form-control"
 									th:field="*{nome}" 
+									placeholder="Nome do produto"
 									/>
 									<div style="color: red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="marca" class="col-sm-2 col-form-label   text-right">Marca<span style="color: red;">*</span></label>
+							<label for="marca" class="col-sm-2 col-form-label   text-right">Marca do produto<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="marca"
 									id="marca" class="form-control"
 									th:field="*{marca}" 
+									placeholder="Marca do produto"
 									/>
 									<div style="color: red;" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="quantidade" class="col-sm-2 col-form-label   text-right">Quantidade<span style="color: red;">*</span></label>
+							<label for="quantidade" class="col-sm-2 col-form-label   text-right">Quantidade no lote<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="quantidade"
 									th:field="*{quantidade}"
 									id="quantidade" class="form-control "
+									placeholder="999"
 									/>
 									<div style="color: red;" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}" ></div>
 							</div>
@@ -65,33 +69,35 @@
 								<input type="text" name="precoUnitario"
 									th:field="*{precoUnitario}"
 									id="precoUnitario" class="form-control "
+									placeholder="99.99"
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('precoUnitario')}" th:errors="*{precoUnitario}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="precoLote" class="col-sm-2 col-form-label   text-right">Preço lote<span style="color: red;">*</span></label>
+							<label for="precoLote" class="col-sm-2 col-form-label   text-right">Preço do lote<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="precoLote"
 									th:field="*{precoLote}"
 									id="precoLote" class="form-control "
+									placeholder="99.99"
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('precoLote')}" th:errors="*{precoLote}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="dataCompra" class="col-sm-2 col-form-label   text-right">Data compra<span style="color: red;">*</span></label>
+							<label for="dataCompra" class="col-sm-2 col-form-label   text-right">Data da compra<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="dataCompra"
 									th:field="*{dataCompra}"
 									id="dataCompra" class="form-control date"
-									placeholder="14/10/1996"
+									placeholder="dd/MM/aaaa"
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('dataCompra')}" th:errors="*{dataCompra}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="pericivel" class="col-sm-2 col-form-label   text-right">Pericível<span style="color: red;">*</span></label>
+							<label for="pericivel" class="col-sm-2 col-form-label   text-right">Pericível</label>
 							<div class="controls col-sm-4 col-sm-4">
 								<div class="form-check  ">
 									<input class="form-check-input" type="checkbox"
@@ -100,12 +106,12 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="dataValidade" class="col-sm-2 col-form-label   text-right">Data validade</label>
+							<label for="dataValidade" class="col-sm-2 col-form-label   text-right">Data de validade</label>
 							<div class="controls col-sm-4">
 								<input type="text" name="dataValidade"
 									th:field="*{validade}"
 									id="dataValidade" class="form-control date"
-									placeholder="14/10/1996"
+									placeholder="dd/MM/aaaa"
 									disabled
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('validade')}" th:errors="*{validade}" ></div>
@@ -132,8 +138,6 @@
 									Cancelar </a>
 							</div>
 						</div>
-						
-					
 							<script th:inline="javascript">
 								/*<![CDATA[*/
 									
@@ -153,24 +157,14 @@
 									    		}
 								    		}
 								    	});
-									
-								
+								    	
 								    	$('#pericivel').on('change', function(){
 											$("#dataValidade").prop('disabled', !this.checked);
 										});
 								
-								
-								
 									};
-									
-									
-									
-									
-									
-									
 								/*]]>*/
 							</script>
-						
 						
 						<!--  MODAL -->
 						<div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
@@ -184,7 +178,7 @@
 						      </div>
 						      <div class="modal-body">
 						      	<span id="spanValidade" style="color:red;"></span>
-						        Tem certeza disso?
+						        Deseja realmente cadastrar este produto?
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -192,9 +186,7 @@
 						      </div>
 						    </div>
 						  </div>
-						</div>
-						
-						
+						</div>	
 				</form>
 				</div>
 				</div>
