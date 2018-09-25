@@ -48,6 +48,21 @@
 <!-- 						  </button> -->
 <!-- 						</div> -->
 					</div>
+					
+					<div th:if="${naoencontrado}">
+						<script th:inline="javascript">
+                            /*<![CDATA[*/
+                            var flag = [[${naoencontrado}]];
+                            window.onload = function() {
+                                if(flag){
+                                    alertify.error('Perfil de usuário não encontrado!');
+                                }
+                            };
+                            /*]]>*/
+						</script>
+					</div>
+					
+					
 					<div th:if="${param.removido}">
 						<script th:inline="javascript">
 							/*<![CDATA[*/
@@ -65,7 +80,7 @@
 <!-- 						  </button> -->
 <!-- 						</div> -->
 					</div>
-				</div>
+				
 					<div class="row justify-content-center">
 						<h3 >Procurar Perfil Usuário</h3>
 					</div>
@@ -104,6 +119,9 @@
 						<th class="">Ações</th>
 					</tr>
 				</thead>
+				
+				</div>
+				
 				<tbody>
 					<tr th:each="perfil : ${perfilUsuarios}">
 						<td th:text="${perfil.nome}"></td>
