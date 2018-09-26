@@ -168,7 +168,9 @@
 									id="senha" class="form-control "
 									/>
 									<div style="color: red;" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" ></div>
+									<span id="result"></span>
 							</div>
+							
 						</div>
 		                <div class="form-group row justify-content-center ">
 							<label for="confirmarSenha" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Confirmar senha</label>
@@ -233,5 +235,6 @@
 			<div id="push"></div>
 		</div>
 	</section>
+	
 </body>
 </html>

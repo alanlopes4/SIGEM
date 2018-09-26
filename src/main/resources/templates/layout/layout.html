@@ -12,9 +12,11 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/js/alertifyjs/css/alertify.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/passwordscheck.css}" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
  	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  	<link rel="stylesheet" type="text/css" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" >
+ 	
  	
 	<title>SIGEM</title>
 
@@ -100,7 +102,9 @@
     <script type="text/javascript" th:src="@{/js/select2/select2.full.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/alertifyjs/alertify.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/datejs/date.js}"></script>
+    <script type="text/javascript" th:src="@{/js/password_checker/passwordscheck.js}"></script>
     <script type="text/javascript" src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    
 	<script type="text/javascript">
 		<!-- BLOCO DE CÒDIGO USADO PARA AS MÁSCARAS  -->
 		$(document).ready(function(){
@@ -139,7 +143,8 @@
 			  $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
 			});
 		
-		<!-- USADO PARA O ALERTYFY -->
+		<!-- USADO PARA O PASSWORD INDICADOR -->
+	    
 	</script>
 </body>
 </html>
