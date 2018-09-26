@@ -72,7 +72,9 @@ public class ResetarSenhaController {
         TokenResetarSenha token = tokenRepository.findByToken(form.getToken());
         Usuario usuario = token.getUsuario();
         String updatedPassword = form.getSenha();
-        usuarioService.updatePassword(updatedPassword, usuario.getId());
+        if(updatedPassword != "")
+        	usuario.setSenha(updatedPassword);
+        usuarioService.atualizar(usuario);
         tokenRepository.delete(token);
 
         return "redirect:/login?resetSuccess";

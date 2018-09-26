@@ -58,7 +58,7 @@ public class EsqueceuSenhaController {
             return new ModelAndView("redirect:/sigem/login").addObject("erro", true);
         }
 
-        Usuario usuario = usuarioService.findUsuariobyEmail(form.getEmail());
+        Usuario usuario = usuarioService.buscarPorEmail(form.getEmail());
         if (usuario == null){
             result.rejectValue("email", null, "We could not find an account for that e-mail address.");
             return new ModelAndView("redirect:/sigem/login").addObject("erro", true);
