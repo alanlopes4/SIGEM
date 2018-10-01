@@ -19,79 +19,85 @@
 					<form th:object="${produto}" th:action="@{/sigem/produtos/cadastrar}" method="POST"
 						class="form-default form-horizontal" >
 						<div class="form-group row justify-content-center " >
-							<label for="codigo" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Código</label>
-							<div class="controls col-sm-4 col-sm-4">
+							<label for="codigo" class="col-sm-2 col-form-label   text-right">Código de barras<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4 ">
 								<input type="text" name="codigo"
 									id="codigo" class="form-control"
 									th:field="*{codigo}" 
 									autofocus="autofocus"
-									/>
+									placeholder="Código de barras"
+									/>								
 								<div style="color: red;" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Nome Produto</label>
+							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right">Nome do produto<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="nomeProduto"
 									id="nome" class="form-control"
 									th:field="*{nome}" 
+									placeholder="Nome do produto"
 									/>
 									<div style="color: red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="marca" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Marca</label>
+							<label for="marca" class="col-sm-2 col-form-label   text-right">Marca do produto<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="marca"
 									id="marca" class="form-control"
 									th:field="*{marca}" 
+									placeholder="Marca do produto"
 									/>
 									<div style="color: red;" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="quantidade" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Quantidade</label>
+							<label for="quantidade" class="col-sm-2 col-form-label   text-right">Quantidade no lote<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="quantidade"
 									th:field="*{quantidade}"
 									id="quantidade" class="form-control "
+									placeholder="999"
 									/>
 									<div style="color: red;" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="precoUnitario" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Preço Unitário</label>
+							<label for="precoUnitario" class="col-sm-2 col-form-label   text-right">Preço unitário<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="precoUnitario"
 									th:field="*{precoUnitario}"
 									id="precoUnitario" class="form-control "
+									placeholder="99.99"
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('precoUnitario')}" th:errors="*{precoUnitario}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="precoLote" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Preço Lote</label>
+							<label for="precoLote" class="col-sm-2 col-form-label   text-right">Preço do lote<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="precoLote"
 									th:field="*{precoLote}"
 									id="precoLote" class="form-control "
+									placeholder="99.99"
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('precoLote')}" th:errors="*{precoLote}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="dataCompra" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Data Compra</label>
+							<label for="dataCompra" class="col-sm-2 col-form-label   text-right">Data da compra<span style="color: red;">*</span></label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="dataCompra"
 									th:field="*{dataCompra}"
 									id="dataCompra" class="form-control date"
-									placeholder="14/10/1996"
+									placeholder="dd/MM/aaaa"
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('dataCompra')}" th:errors="*{dataCompra}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="pericivel" class="col-sm-2 col-form-label   text-right">Pericivel</label>
+							<label for="pericivel" class="col-sm-2 col-form-label   text-right">Pericível</label>
 							<div class="controls col-sm-4 col-sm-4">
 								<div class="form-check  ">
 									<input class="form-check-input" type="checkbox"
@@ -100,12 +106,13 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="dataValidade" class="col-sm-2 col-form-label   text-right">Data Validade</label>
+							<label for="dataValidade" class="col-sm-2 col-form-label   text-right">Data de validade</label>
 							<div class="controls col-sm-4">
 								<input type="text" name="dataValidade"
 									th:field="*{validade}"
 									id="dataValidade" class="form-control date"
-									placeholder="14/10/1996"
+									placeholder="dd/MM/aaaa"
+									disabled
 									/>
 								<div style="color: red;" th:if="${#fields.hasErrors('validade')}" th:errors="*{validade}" ></div>
 							</div>
@@ -118,10 +125,11 @@
 								<div style="color: red;" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" ></div>
 							</div>
 						</div>
+						<p class="text-danger text-center">*Campos obrigatórios.</p>
 						<hr />
 						<div class="form-group row justify-content-center ">
 							<div class="col-sm-2 text-right">
-								<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#confirmacaoModal">
+								<button id="btn_salvar" type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#confirmacaoModal">
 									Salvar
 								</button>
 							</div>
@@ -130,7 +138,33 @@
 									Cancelar </a>
 							</div>
 						</div>
-						
+							<script th:inline="javascript">
+								/*<![CDATA[*/
+									
+								    window.onload = function() {
+								    	$('#btn_salvar').on('click', function(){
+								    		
+								    		if($('#dataValidade').val() != ''){
+								    			var dataValidade = $('#dataValidade').val();
+									    		var d1 = ""+Date.parseExact(dataValidade, "d/M/yyyy");
+									    		var d2 = ""+Date.today().add(5).days();
+									    		var d3 = ""+Date.today().add(4).days();
+									    		var d4 = ""+Date.today().add(3).days();
+									    		var d5 = ""+Date.today().add(2).days();
+									    		var d6 = ""+Date.today().add(1).days();
+									    		if(d1 === d2 || d1 === d3 || d1 === d4 || d1 === d5 || d1 === d6){
+									    			$("#spanValidade").html("Atenção. Este produto está próximo da data de validade.<br>");
+									    		}
+								    		}
+								    	});
+								    	
+								    	$('#pericivel').on('change', function(){
+											$("#dataValidade").prop('disabled', !this.checked);
+										});
+								
+									};
+								/*]]>*/
+							</script>
 						
 						<!--  MODAL -->
 						<div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
@@ -143,7 +177,8 @@
 						        </button>
 						      </div>
 						      <div class="modal-body">
-						        Tem certeza disso?
+						      	<span id="spanValidade" style="color:red;"></span>
+						        Deseja realmente cadastrar este produto?
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -151,29 +186,15 @@
 						      </div>
 						    </div>
 						  </div>
-						</div>
-						
-						
+						</div>	
 				</form>
 				</div>
 				</div>
 			<div id="push"></div>
 		</div>
+		
+		
 	</section>
-	<script >
-	$(document).ready(function(){
-		alert("Olaa");
-	});
 	
-		$('#pericivel').on('click', function(){
-			alert(this);
-		});
-	
-// 	document.getElementById('pericivel').onchange = function() {
-// 	    document.getElementById('dataValidade').disabled = !this.checked;
-// 	};
-	
-	
-	</script>
 </body>
 </html>

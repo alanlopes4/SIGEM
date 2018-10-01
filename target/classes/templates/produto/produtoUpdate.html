@@ -12,25 +12,15 @@
 			<div id="main">
 				<div class="jumbotron">
 					<div class="row justify-content-center">
-						<h3>Atualizar Produto</h3>
+						<h3>Atualizar produto</h3>
 					</div>
 					<hr/>
 					<!-- MESSAGES -->
 					<form th:object="${produto}" th:action="@{/sigem/produtos/editar/{id}(id=${produto.id})}" method="POST"
 						class="form-default form-horizontal" >
-						<div class="form-group row justify-content-center ">
-							<label for="id" class="col-sm-2 col-form-label   text-right">ID</label>
-							<div class="controls col-sm-4 col-sm-4">
-								<input type="text" name="id"
-									id="id" class="form-control"
-									th:field="*{id}" 
-									readOnly="readonly"
-									/>
-							</div>
-						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="codigo" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Código</label>
-							<div class="controls col-sm-4 col-sm-4">
+							<label for="codigo" class="col-sm-2 col-form-label   text-right">Código de barras<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4">
 								<input type="text" name="codigo"
 									id="codigo" class="form-control"
 									th:field="*{codigo}" 
@@ -40,8 +30,8 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Nome Produto</label>
-							<div class="controls col-sm-4 col-sm-4">
+							<label for="nomeProduto" class="col-sm-2 col-form-label   text-right">Nome do produto<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4">
 								<input type="text" name="nomeProduto"
 									id="nome" class="form-control"
 									th:field="*{nome}" 
@@ -50,8 +40,8 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center " >
-							<label for="marca" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Marca</label>
-							<div class="controls col-sm-4 col-sm-4">
+							<label for="marca" class="col-sm-2 col-form-label   text-right">Marca do produto<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4">
 								<input type="text" name="marca"
 									id="marca" class="form-control"
 									th:field="*{marca}" 
@@ -60,8 +50,8 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="quantidade" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Quantidade</label>
-							<div class="controls col-sm-4 col-sm-4">
+							<label for="quantidade" class="col-sm-2 col-form-label   text-right">Quantidade no lote<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4">
 								<input type="text" name="quantidade"
 									th:field="*{quantidade}"
 									id="quantidade" class="form-control "
@@ -70,8 +60,8 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="precoUnitario" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Preço Unitário</label>
-							<div class="controls col-sm-4 col-sm-4">
+							<label for="precoUnitario" class="col-sm-2 col-form-label   text-right">Preço unitário<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4">
 								<input type="text" name="precoUnitario"
 									th:field="*{precoUnitario}"
 									id="precoUnitario" class="form-control "
@@ -80,8 +70,8 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="precoLote" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Preço Lote</label>
-							<div class="controls col-sm-4 col-sm-4">
+							<label for="precoLote" class="col-sm-2 col-form-label   text-right">Preço do lote<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4">
 								<input type="text" name="precoLote"
 									th:field="*{precoLote}"
 									id="precoLote" class="form-control "
@@ -90,8 +80,8 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="dataCompra" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Data Compra</label>
-							<div class="controls col-sm-4 col-sm-4">
+							<label for="dataCompra" class="col-sm-2 col-form-label   text-right">Data da compra<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4">
 								<input type="text" name="dataCompra"
 									th:field="*{dataCompra}"
 									id="dataCompra" class="form-control date"
@@ -109,7 +99,7 @@
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
-							<label for="dataValidade" class="col-sm-2 col-form-label   text-right">Data Validade</label>
+							<label for="dataValidade" class="col-sm-2 col-form-label   text-right">Data de validade</label>
 							<div class="controls col-sm-4">
 								<input type="text" name="dataValidade"
 									th:field="*{validade}"
@@ -126,6 +116,7 @@
 								<div style="color: red;" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" ></div>
 							</div>
 						</div>
+						<p class="text-danger text-center">*Campos obrigatórios.</p>
 						<hr />
 						<div class="form-group row justify-content-center ">
 							<div class="col-sm-2 text-right">
