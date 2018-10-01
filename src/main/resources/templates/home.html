@@ -12,8 +12,86 @@
 	<section layout:fragment="content">
 		<div id="wrap" class="container">
 			<div id="main">
-			<div class="jumbotron text-center">
-				<h3>SIGEM. Seja Bem-vindo, <label th:text="${nomeUsuario}"></label>.</h3>
+			<div class="jumbotron text-center h-100 w-100">
+<!-- 			 -->
+				<div class="row justify-content-center" style="padding-top: 5px;">
+					<h3>SIGEM. Seja Bem-vindo, <label th:text="${nomeUsuario}"></label>.</h3>
+				</div>
+				<hr/>
+				<div class="row" style="padding-top: 5px;">
+					
+				<div class="col-md-4">
+				<div class="card text-center" style="min-height: 250px;" >
+					  <div class="card-body">
+					  <div class="row">
+						  <div class="col-md-12" >
+						  	<h5 class="card-title">Buscar produtos</h5>
+						  </div>
+					  </div>
+					  <hr />
+					    <div class="row">
+					    <div class="col-md-12">
+					    	<img th:src="@{/images/searchProduct.png}"  class="img-fluid" alt="Responsive image" height="150" width="150"/> 					    	
+					    	<div class="form-group">
+									<a class="btn btn-success btn-block"  th:href="@{/sigem/produtos}" 
+									>Buscar</a>
+									
+							</div>
+					    </div>					    
+					  </div>
+				</div>
+			</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card text-center" >
+					  <div class="card-body" style="min-height: 250px;">
+					  <div class="row">
+					  <div class="col-md-12">
+					    <h5 class="card-title">Buscar usuários</h5>
+					  </div>
+					  </div>
+					    <hr />
+					    <div class="row">
+					    	<div class="col-md-12">
+					    	<img th:src="@{/images/searchUser.png}"  class="img-fluid" alt="Responsive image" height="150" width="150"/> 					    	
+					    	<div class="form-group">
+								<a class="btn btn-success btn-block"  th:href="@{/sigem/usuarios}" 
+									>Buscar</a>
+							</div>
+					    	
+							</div>
+					    </div>
+					  </div>
+				</div>
+			</div>
+				
+			<div class="col-md-4">
+				<div class="card text-center" style="min-height: 250px;" >
+					  <div class="card-body">
+					  <div class="row">
+						  <div class="col-md-12" >
+						  	<h5 class="card-title">Buscar  Perfis de Usuários</h5> 
+						  </div>
+					  </div>
+					 <hr />
+					    <div class="row">
+					    <div class="col-md-12">
+					    	<img th:src="@{/images/searchProfile.png}"  class="img-fluid" alt="Responsive image" height="150" width="150"/> 
+					    	
+					    	<div class="form-group">
+								<a class="btn btn-success btn-block"  th:href="@{/sigem/produtos}" 
+									>Buscar</a>
+							</div>
+					    
+					    </div>					    
+					  </div>
+				</div>
+			</div>
+			</div>
+				
+				
+			</div>
+				
 			</div>
 		</div>
 		</div>
