@@ -1,6 +1,7 @@
 package br.com.sigem.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -88,6 +89,23 @@ public class UsuarioService {
     public List<Usuario> filtrar(UsuarioFilter usuarioFilter){
     	return usuarioRepository.filtrar(usuarioFilter);
     }
+    
+    public Usuario findUsuariobyEmail(String email) {
+		return usuarioRepository.findByEmail(email);
+	}
+
+	public Optional<Usuario> findUsuarioByTokenResetarSenha(String token) {
+		return usuarioRepository.findUsuarioByTokenResetarSenha(token);
+	}
+
+	public void updatePassword(String novaSenha, Long id) {
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		if(usuario.isPresent()) {
+			usuario.get().setSenha(novaSenha);
+			usuarioRepository.saveAndFlush(usuario.get());
+		}
+		
+	}
   
 	
 }

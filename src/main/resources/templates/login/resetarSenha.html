@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layoutLogin}" >
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+	<div id="wrap" class="container">
+	    <div id="main">
+			<div class="jumbotron">
+		    <div class="row">
+                <div class=" col-md-3 col-lg-3 col-xl-3">
+                </div>
+                <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-6">
+                    <h1>Resetar Senha</h1>
+				<p class="lead">Digite sua senha nova nos campos abaixo</p>
+				<!-- MESSAGES  -->
+                    <hr>
+                </div>
+            </div>
+	        <div class="col-md-12 col-md-offset-4">
+	            <div class="panel panel-default">
+	                <div class="panel-body">
+	                    <div class="text-center">
+	                        <div class="panel-body">
+	
+	                            <div th:if="${error}">
+	                                <div class="alert alert-danger">
+	                                    <span th:text="${error}"></span>
+	                                </div>
+	                            </div>
+	
+	                            <form th:action="@{/sigem/resetarSenha}" th:object="${passwordResetForm}" method="post">
+	
+	                                <p class="error-message"
+	                                   th:if="${#fields.hasGlobalErrors()}"
+	                                   th:each="error : ${#fields.errors('global')}"
+	                                   th:text="${error}">Erro de validação
+	                                   </p>
+	
+	                                <input type="hidden" name="token" th:value="${token}"/>
+	
+	                                <div class="form-group"
+	                                     th:classappend="${#fields.hasErrors('senha')}? 'has-error':''">
+	                                    <div class="input-group">
+	                                        <input id="senha"
+	                                               class="form-control"
+	                                               placeholder="Senha"
+	                                               type="password"
+	                                               th:field="*{senha}"/>
+	                                    </div>
+	                                    <p class="error-message"
+	                                       th:each="error: ${#fields.errors('senha')}"
+	                                       th:text="${error}">Erro de validação</p>
+	                                </div>
+	                                <div class="form-group"
+	                                     th:classappend="${#fields.hasErrors('confirmarSenha')}? 'has-error':''">
+	                                    <div class="input-group">
+	                                        <input id="confirmarSenha"
+	                                               class="form-control"
+	                                               placeholder="Confirmar senha"
+	                                               type="password"
+	                                               th:field="*{confirmarSenha}"/>
+	                                    </div>
+	                                    <p class="error-message"
+	                                       th:each="error: ${#fields.errors('confirmarSenha')}"
+	                                       th:text="${error}">Erro de validação</p>
+	                                </div>
+	                                <div class="form-group">
+	                                	<div class="row" style="padding-top: 1rem">
+							                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6  offset-md-3 offset-lg-3 offset-xl-3">
+			                                    <button type="submit" class="btn btn-block btn-success">Resetar senha</button>
+							                    <a class="btn btn-link" th:href="@{/sigem/login}" target="_blank">Já está cadastrado?</a>
+							                </div>
+							            </div>
+	                                </div>
+	                            </form>
+	
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div></div>
+	
+</section>
+</body>
+
+</html>
+

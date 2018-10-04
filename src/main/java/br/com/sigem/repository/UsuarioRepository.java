@@ -1,8 +1,14 @@
 package br.com.sigem.repository;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 import br.com.sigem.model.Usuario;
 import br.com.sigem.repository.usuario.UsuarioRepositoryQuery;
 
@@ -27,9 +33,16 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>, Usuario
 	 * @param email
 	 * @return
 	 */
-	public List<Usuario> findByEmail(String email);
+	public Usuario findByEmail(String email);
 	
 	
 	public List<Usuario> findByAtivo(int ativo);
+
+	public Optional<Usuario> findUsuarioByTokenResetarSenha(String token);
+	
+//	@Modifying
+//    @Query("update Usuario u set u.senha = :senha where u.id = :id")
+//    void updatePassword(@Param("password") String senha, @Param("id") Long id);
+
 	
 }

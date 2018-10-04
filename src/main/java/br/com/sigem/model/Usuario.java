@@ -4,7 +4,21 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -12,7 +26,6 @@ import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.sigem.util.AdapterLocalDate;
 /**
@@ -78,6 +91,9 @@ public class Usuario {
 	private String confirmarEmail;
 	@Transient
 	private String confirmarSenha;
+	
+	@Column
+	private String tokenResetarSenha;
 	
 	public Usuario(){
 		
@@ -229,7 +245,14 @@ public class Usuario {
 			return false;
 		return true;
 	}
+
+	public void setTokenResetarSenha(String token) {
+		tokenResetarSenha = token;
+	}
 	
+	public String gettokenResetarSenha() {
+		return tokenResetarSenha;
+	}
 	
 	
 	
