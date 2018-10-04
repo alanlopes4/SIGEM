@@ -30,12 +30,4 @@ public class LoginController {
 		return new ModelAndView("redirect:/sigem/login");
 	}
 	
-	
-	@GetMapping("/recuperarSenha")
-	public ModelAndView recuperarSenha(Usuario usuario) {
-		ModelAndView mv = new ModelAndView("login/recuperarSenha");
-		mv.addObject("usuario", usuario);
-		return mv;
-	}
-	
 }

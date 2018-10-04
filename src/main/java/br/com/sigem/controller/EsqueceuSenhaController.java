@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/esqueceuSenha")
+@RequestMapping("sigem/esqueceuSenha")
 public class EsqueceuSenhaController {
 	
 	@Autowired 
@@ -42,26 +42,25 @@ public class EsqueceuSenhaController {
     }
 
     @GetMapping
-    public ModelAndView displayForgotPasswordPage() {
-    	
-    	ModelAndView mv = new ModelAndView("login/recuperarSenha/esqueceuSenha");
+    public ModelAndView mostrarPaginaEsqueceuSenha() {
+    	ModelAndView mv = new ModelAndView("login/esqueceuSenha");
         return mv;
         
     }
 
     @PostMapping
-    public ModelAndView processForgotPasswordForm(@ModelAttribute("forgotPasswordForm") @Valid EsqueceuSenhaDTO form,
+    public ModelAndView processarFormEsqueceuSenha(@ModelAttribute("forgotPasswordForm") @Valid EsqueceuSenhaDTO form,
                                             BindingResult result,
                                             HttpServletRequest request) {
 
         if (result.hasErrors()){
-            return new ModelAndView("redirect:/sigem/login").addObject("erro", true);
+            return new ModelAndView("redirect:/sigem/esqueceuSenha").addObject("erro", true);
         }
 
         Usuario usuario = usuarioService.findUsuariobyEmail(form.getEmail());
         if (usuario == null){
-            result.rejectValue("email", null, "We could not find an account for that e-mail address.");
-            return new ModelAndView("redirect:/sigem/login").addObject("erro", true);
+            result.rejectValue("email", null, "Não foi possível encontrar o endereço de email.");
+            return new ModelAndView("redirect:/sigem/esqueceuSenha").addObject("invalido", true);
         }
 
         TokenResetarSenha token = new TokenResetarSenha();
@@ -71,16 +70,16 @@ public class EsqueceuSenhaController {
         tokenRepository.save(token);
 
         Email mail = new Email();
-        mail.setRemetente("no-reply@msigemuem.com");
+        mail.setRemetente("SIGEMISSUEM@gmail.com");
         mail.setDestinatario(usuario.getEmail());
-        mail.setAssunto("Password reset request");
+        mail.setAssunto("Pedido de resetar senha");
 
         Map<String, Object> model = new HashMap<>();
         model.put("token", token);
         model.put("user", usuario);
         model.put("signature", "Teste");
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-        model.put("resetUrl", url + "/reset-password?token=" + token.getToken());
+        model.put("resetUrl", url + "/sigem/resetarSenha?token=" + token.getToken());
         mail.setModelo(model);
         emailService.sendEmail(mail);
 
