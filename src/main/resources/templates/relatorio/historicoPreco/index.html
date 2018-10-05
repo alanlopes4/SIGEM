@@ -87,13 +87,20 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="historico : ${historicos}">
+							<tr th:if="${not #lists.isEmpty(historicos)}" th:each="historico : ${historicos}">
 								<td th:text="${historico.produto.nome}"></td>
 								<td th:text="${historico.produto.codigo}"></td>
 								<td th:text="${historico.dataAlteracao}"></td>
 								<td th:text="${historico.precoAnterior}"></td>
 								<td th:text="${historico.precoAtual}"></td>
 							</tr>
+							<tr th:if="${#lists.isEmpty(historicos)}">
+		                    	<td colspan="5">
+			                    	<div class="alert alert-info" style="background-color: #f1f3f5;" role="alert">
+									  Nenhum registro encontrado no período especificado.
+									</div> 
+								</td>
+		                    </tr>
 						</tbody>
 						<tfoot>
 						</tfoot>
