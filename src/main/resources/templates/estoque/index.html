@@ -14,13 +14,13 @@
 			<div id="main">
 			<div class="jumbotron">
 			<div class="row justify-content-center">
-						<h3 >Procurar Estoque de produto</h3>
+						<h3 >Gerenciamento de estoque e gondola</h3>
 					</div>
 					<hr/>
 					<form  th:object="${estoqueFilter}" th:action="@{/sigem/estoque}" method="POST"
 							class="form-default form-horizontal" >
 							<div class="form-group row justify-content-center ">
-								<label for="nome" class="col-sm-2 col-form-label   text-right">Nome</label>
+								<label for="nome" class="col-sm-2 col-form-label   text-right">Produto</label>
 								<div class="controls col-sm-4 col-sm-4">
 									<input type="text" name="nome"
 										
@@ -52,7 +52,7 @@
 				class="table table-hover table-striped table-bordered table-click">
 				<thead>
 					<tr>
-						<th class="">Nome</th>
+						<th class="">Produto</th>
 						<th class="">Estoque Minímo</th>
 						<th class="">Estoque</th>
 						<th class="">Gôndola</th>
@@ -79,11 +79,6 @@
 			</table>
 		</div>
 	</section>
-	<script>
-			$(document).ready(function() {
-			    $('#tabela_estoques').DataTable();
-			} );
-</script>
 </body>
 
 </html>
