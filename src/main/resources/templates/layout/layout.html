@@ -65,6 +65,7 @@
           <a sec:authorize="hasRole('ROLE_USUARIOS_CADASTRAR')" class="dropdown-item" th:href="@{/sigem/usuarios/cadastrar}">Cadastrar usuário</a>
           <a sec:authorize="hasRole('ROLE_PERFIL_CONSULTAR')" class="dropdown-item" th:href="@{/sigem/perfilUsuarios}">Consultar perfil</a>
           <a sec:authorize="hasRole('ROLE_PERFIL_CADASTRAR')" class="dropdown-item" th:href="@{/sigem/perfilUsuarios/cadastrar}">Cadastrar perfil</a>
+          <a  class="dropdown-item" th:href="@{/sigem/estoque}">Estoque e Gôndola</a>
         </div>
       </li>
       <li>
