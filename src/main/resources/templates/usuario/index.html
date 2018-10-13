@@ -161,7 +161,9 @@
 						<td>
 							<div class="btn-group pull-right">
                                 <a sec:authorize="hasRole('ROLE_USUARIOS_EDITAR')" class="btn btn-sm btn-primary" th:href="@{/sigem/usuarios/editar/{id}(id=${usuario.id})}" >Editar</a>
-                                <a sec:authorize="hasRole('ROLE_USUARIOS_EXCLUIR')" class="delete btn btn-sm btn-danger" th:href="@{/sigem/usuarios/remover/{id}(id=${usuario.id})}">Excluir</a>
+                                <button id="excluir" sec:authorize="hasRole('ROLE_USUARIOS_EXCLUIR')" type="button" th:value="${usuario.id}" class="btn btn-sm btn-danger"  data-toggle="modal"  data-target="#confirmacaoModal">
+									Excluir
+								</button>
                            </div>
                         </td>
                     </tr>
@@ -180,7 +182,43 @@
 			</div>
 		</div>
 		
-		<!-- MODAL -->
+		<!--  MODAL PARA CONFIRMAÇÃO DA EXCLUSÃO -->
+						<div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModalLabel" aria-hidden="true" 
+							>
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="confirmacaoModalLabel">Exclusão de usuário</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        Tem certeza disso?
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						        
+						        <a  id="excluirModal" class="delete btn btn-primary" >Excluir</a>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<script th:inline="javascript">
+								/*<![CDATA[*/
+									window.onload = function() {
+										var usuarioID = 0;
+								    	$('#excluir').on('click', function(){
+								    		 usuarioId = $(this).val();
+								    	});
+								    	$('#confirmacaoModal').on('show.bs.modal', function (e) {
+								            $(this).find('#excluirModal').attr('href', '/sigem/usuarios/remover/'+usuarioId);
+								        });
+									};
+								/*]]>*/
+							</script>
+		
+		<!-- MODAL PARA INTERFACE DE AJUDA-->
 		<div class="modal fade" id="ajudaModal" tabindex="-1" role="dialog" aria-labelledby="ajudaModalLabel" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
