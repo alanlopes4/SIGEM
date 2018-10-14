@@ -15,7 +15,7 @@
 					<div th:if="${param.error}">
 							<script th:inline="javascript">
 							/*<![CDATA[*/
-								var flag = [[${param.removido}]]; 
+								var flag = [[${param.error}]]; 
 							    window.onload = function() {
 							        if(flag){
 							  			alertify.error('Erro na geração do relatório!');
@@ -24,10 +24,10 @@
 							/*]]>*/
 						</script>
 						</div>
-						<div th:if="${param.sucesso}">
+						<div th:if="${param.gerado}">
 							<script th:inline="javascript">
 							/*<![CDATA[*/
-								var flag = [[${param.sucesso}]]; 
+								var flag = [[${param.gerado}]]; 
 							    window.onload = function() {
 							        if(flag){
 							  			alertify.success('Relatório Gerado com sucesso!');
@@ -63,10 +63,11 @@
 							</div>
 							<div class="form-inline col-md-4">
 								<button type="submit" class="btn btn-primary">Confirmar</button>
-								<button type="button" class="btn btn-primary"
-									disabled>
+								<button type="button" class="btn btn-info"
+					       			data-toggle="modal" data-target="#confirmacaoModal"
+									>
 									<i class="fa fa-print"></i>
-								</button>
+							</button>
 							</div>
 						</div>
 						<hr />
@@ -106,9 +107,49 @@
 						</tfoot>
 					</table>
 				</div>
-
-
-
+				
+				<!--  MODAL -->
+				<div class="modal fade" id="confirmacaoModal" tabindex="-1"
+					role="dialog" aria-labelledby="confirmacaoModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="confirmacaoModalLabel">Geração do relatório em pdf</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form th:action="@{/sigem/relatorios/historicoPreco/gerarPdf}"
+								method="POST" class="form-default form-horizontal">
+								<div class="modal-body">
+									<div class="form-group row justify-content-left">
+											<label for="dataInicioModal"
+												class="col-sm-4 col-form-label   text-right">Data de início</label>
+											<div class="controls col-sm-4">
+												<input type="text" name="dataInicioModal" id="dataInicioModal"
+													class="form-control date" placeholder="dd/mm/yyyy"/>
+											</div>
+									</div>
+									<div class="form-group row justify-content-left">
+											<label for="dataFimModal"
+												class="col-sm-4 col-form-label   text-right">Data término</label>
+											<div class="controls col-sm-4 col-sm-4">
+												<input type="text" name="dataFimModal" id="dataFimModal"
+													class="form-control date" placeholder="dd/mm/yyyy"/>
+											</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Cancelar</button>
+									<button type="submit" class="btn btn-primary">Confirmar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 
 			</div>
 		</div>
