@@ -29,12 +29,30 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 	
+	/**
+	 * Retorna todos os usuários ativos
+	 * @return
+	 */
 	public List<Usuario> listarTodosAtivos(){
 		return usuarioRepository.findByAtivo(1);
 	}
      
 	/**
-	 * Responsável por buscar o usuário de acordo com o id digitado
+	 * Busca o usuário de acorodo com o email digitado
+	 * @param email
+	 * @return
+	 */
+	public Usuario buscarPorEmail(String email) {
+		
+			List<Usuario> usuarios = 	usuarioRepository.findByEmail(email);
+			if(!usuarios.isEmpty())
+				return usuarios.get(0);
+			else
+				return null;
+	}
+	
+	/**
+	 * Buscar o usuário de acordo com o id digitado
 	 * @param id
 	 * @return
 	 */

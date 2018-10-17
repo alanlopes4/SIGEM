@@ -60,8 +60,8 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryQuery{
 					"%"+ produtoFilter.getDescricao().toLowerCase()+ "%"));
 		if(produtoFilter.getQuantidade() != null && produtoFilter.getQuantidade() > 0)
 			predicates.add(builder.equal(root.get("quantidade"), produtoFilter.getQuantidade()));
-		if(produtoFilter.getQuantidade() != null && produtoFilter.getQuantidade() > 0)
-			predicates.add(builder.equal(root.get("quantidade"), produtoFilter.getQuantidade()));
+		if(produtoFilter.getQuantidadeMinima() != null && produtoFilter.getQuantidadeMinima() > 0)
+			predicates.add(builder.equal(root.get("quantidadeMinima"), produtoFilter.getQuantidadeMinima()));
 		if(produtoFilter.getCodigo() != null && produtoFilter.getCodigo() > 0)
 			predicates.add(builder.equal(root.get("codigo"), produtoFilter.getCodigo()));
 		if(produtoFilter.getPrecoUnitario() != null && produtoFilter.getPrecoUnitario() > 0)
