@@ -10,6 +10,7 @@ public class ProdutoFilter {
 	private String nome;
 	private String marca;
 	private Integer quantidade;
+	private Integer quantidadeMinima;
 	private Double precoUnitario;
 	private Double precoLote;
 	@DateTimeFormat(pattern="dd/MM/yyyy")
@@ -53,6 +54,12 @@ public class ProdutoFilter {
 	}
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}
+	public Integer getQuantidadeMinima() {
+		return quantidadeMinima;
+	}
+	public void setQuantidadeMinima(Integer quantidadeMinima) {
+		this.quantidadeMinima = quantidadeMinima;
 	}
 	public Double getPrecoUnitario() {
 		return precoUnitario;

@@ -16,42 +16,43 @@
 				<div class="jumbotron">
 					<div th:if="${param.sucesso}">
 						<script th:inline="javascript">
-							/*<![CDATA[*/
-								var flag = [[${param.sucesso}]]; //Your Thymleaf variable
+								var flag = [[${param.sucesso}]];
 							    window.onload = function() {
 							        if(flag){
-							  			alertify.success('Produto Cadastrado com sucesso!');
+							  			alertify.success('Produto cadastrado com sucesso!');
 							        }
 								};
-							/*]]>*/
 						</script>
 					</div>
 					<div th:if="${param.atualizado}">
 						<script th:inline="javascript">
-							/*<![CDATA[*/
-								var flag = [[${param.atualizado}]]; //Your Thymleaf variable
+								var flag = [[${param.atualizado}]];
 							    window.onload = function() {
 							        if(flag){
-							  			alertify.success('Produto Atualizado com sucesso!');
+							  			alertify.success('Produto atualizado com sucesso!');
 							        }
 								};
-							/*]]>*/
 						</script>
 					</div>
 					<div th:if="${param.removido}">
 						<script th:inline="javascript">
-							/*<![CDATA[*/
 								var flag = [[${param.removido}]]; 
 							    window.onload = function() {
 							        if(flag){
-							  			alertify.success('Produto Removido com sucesso!');
+							  			alertify.success('Produto removido com sucesso!');
 							        }
 								};
-							/*]]>*/
 						</script>
 					</div>
-					<div class="row justify-content-center">
-						<h3 >Procurar produto</h3>
+					<div class="row">
+						<div class="col-10 text-center">
+							<h3 >Procurar produto</h3>
+						</div>
+						<div class="col-2 text-right">
+							<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ajudaModal">
+									Ajuda <i class="fa fa-question"></i>
+							</button>
+						</div>
 					</div>
 					<hr/>
 					<form  th:object="${produtoFilter}" th:action="@{/sigem/produtos}" method="POST"
@@ -156,6 +157,40 @@
 			
 			</div>
 		</div>
+		
+		<!--  MODAL -->
+		<div class="modal fade" id="ajudaModal" tabindex="-1" role="dialog" aria-labelledby="ajudaModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="ajudaModalLabel">Ajuda</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <h4>Adição de produto</h4>
+						        <p class="text-justify"> Para a realização do cadastro de um produto, é  necessário clicar no botão "Adicionar" e preencher
+						        	todos os campos obrigatórios. Após o cadastro, o usuário pode visualizar, editar e excluir o produto. </p>
+						        	<hr/>
+						       	<h4>Edição de produto</h4>
+						        <p class="text-justify"> Para a realização da edição de um produto, é necessário selecionar o produto na lista e clicar em "Editar". 
+						        	Após a alteração de campos necessários, o produto será atualizado com os novos valores. </p>
+						        	<hr/>
+						        <h4>Exclusão de produto</h4>
+						        <p class="text-justify"> Para a realização da exclusão de um produto, é necessário selecionar o produto na lista e clicar em "Excluir". 
+						        	Após a a exclusão, o produto será removido da lista. </p>
+						        	<hr/>
+						        <h4>Consulta de produto</h4>
+						        <p class="text-justify"> Para a realização da consulta de um produto, é necessário preencher os campos que queira fazer a busca. 
+						        	Após o preenchimento dos campos, os produtos que corresponderem com os parâmetros especificados serão mostrados. </p>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-success" data-dismiss="modal">Entendi</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
 	</section>
 	<script>
 			$(document).ready(function() {

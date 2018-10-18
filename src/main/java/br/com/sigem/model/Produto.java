@@ -43,6 +43,10 @@ public class Produto {
 	private Integer quantidade;
 	
 	@Column(nullable = false)
+	@NotNull(message = "Quantidade mínima é uma informação obrigatória")
+	private Integer quantidadeMinima;
+	
+	@Column(nullable = false)
 	@NotNull(message = "Preço unitário do produto é uma informação obrigatória")
 	private Double precoUnitario;
 	
@@ -74,6 +78,7 @@ public class Produto {
 	public Produto(Long id,String nome,
 			 String marca,
 			 Integer quantidade,
+			 Integer quantidadeMinima,
 			 Double precoUnitario,
 			 Double precoLote,
 			 LocalDate dataCompra,
@@ -84,6 +89,7 @@ public class Produto {
 		this.nome = nome;
 		this.marca = marca;
 		this.quantidade = quantidade;
+		this.quantidadeMinima = quantidadeMinima;
 		this.precoUnitario = precoUnitario;
 		this.precoLote = precoLote;
 		this.dataCompra = dataCompra;
@@ -131,6 +137,14 @@ public class Produto {
 
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}
+	
+	public Integer getQuantidadeMinima() {
+		return quantidadeMinima;
+	}
+
+	public void setQuantidadeMinima(Integer quantidadeMinima) {
+		this.quantidadeMinima = quantidadeMinima;
 	}
 
 	public Double getPrecoUnitario() {

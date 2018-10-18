@@ -11,8 +11,15 @@
 		<div id="wrap" class="container">
 			<div id="main">
 				<div class="jumbotron">
-					<div class="row justify-content-center">
-						<h3>Cadastrar Produto</h3>
+					<div class="row">
+						<div class="col-10 text-center">
+							<h3 >Cadastrar produto</h3>
+						</div>
+						<div class="text-right">
+							<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ajudaModal">
+									Ajuda <i class="fa fa-question"></i>
+							</button>
+						</div>
 					</div>
 					<hr/>
 					<!-- MESSAGES -->
@@ -61,6 +68,17 @@
 									placeholder="999"
 									/>
 									<div style="color: red;" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}" ></div>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="quantidade" class="col-sm-2 col-form-label   text-right">Quantidade mínima do produto<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="quantidadeMinima"
+									th:field="*{quantidadeMinima}"
+									id="quantidadeMinima" class="form-control "
+									placeholder="999"
+									/>
+									<div style="color: red;" th:if="${#fields.hasErrors('quantidadeMinima')}" th:errors="*{quantidadeMinima}" ></div>
 							</div>
 						</div>
 						<div class="form-group row justify-content-center ">
@@ -187,6 +205,28 @@
 						    </div>
 						  </div>
 						</div>	
+						
+						<div class="modal fade" id="ajudaModal" tabindex="-1" role="dialog" aria-labelledby="ajudaModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="ajudaModalLabel">Ajuda</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <h4>Quantidade mínima</h4>
+						        <p class="text-justify"> Quantidade mínima do produto que deverá ter no estoque. Valor utilizado para alertar o usuário a necessidade
+						        	de compra  do produto para reabastecer o estoque. </p>
+						        	<hr/>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-success" data-dismiss="modal">Entendi</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
 				</form>
 				</div>
 				</div>
