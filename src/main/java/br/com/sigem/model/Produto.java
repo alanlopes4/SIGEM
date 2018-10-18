@@ -144,7 +144,7 @@ public class Produto {
 	}
 
 	public void setQuantidadeMinima(Integer quantidadeMinima) {
-		this.quantidade = quantidadeMinima;
+		this.quantidadeMinima = quantidadeMinima;
 	}
 
 	public Double getPrecoUnitario() {
