@@ -60,6 +60,7 @@ public class Usuario {
 	@Column(nullable = false, columnDefinition = "int(1) default 1")
 	private int ativo;
 	@OneToOne
+	@NotNull(message = "Perfil de usuário é uma informação obrigatória")
 	private PerfilUsuario perfilUsuario;
 	@OneToMany
 	private List<Produto> produtos;

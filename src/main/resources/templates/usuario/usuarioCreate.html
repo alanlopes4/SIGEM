@@ -13,6 +13,10 @@
 				<div class="jumbotron">
 					<div class="row justify-content-center">
 						<h3>Cadastrar Usuario</h3>
+						<div th:if="${#lists.isEmpty(perfisUsuario)}" class="alert alert-danger" role="alert">
+						  O cadastramento do usuário só é permitido com um Perfil de usuário existente. Por favor, 
+						  cadastre um Perfil de usuário para continuar.
+						</div>
 					</div>
 					<hr/>
 					<!-- MESSAGES -->
@@ -186,7 +190,7 @@
 							<label for="perfilUsuario" class="col-sm-2 col-form-label   text-right"><span style="color: red;">*</span>Perfil de usuário</label>
 							<div class="controls col-sm-4 col-sm-4">
 								<select name="perfilUsuario" class="form-control " data-type="select2"
-									required="required">
+									required="required" oninvalid="this.setCustomValidity('Por favor, cadastre um perfil antes')">
 									<option th:each="perfil : ${perfisUsuario}"
 						                th:value="${perfil.id}"
 						                th:text="${perfil.nome}" />									
