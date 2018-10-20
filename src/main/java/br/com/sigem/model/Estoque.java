@@ -1,14 +1,17 @@
 package br.com.sigem.model;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.OneToOne;
+
+/**
+ * Classe responsavél por gerenciar as regras de negócios do estoque
+ * @author Alan
+ *
+ */
 
 @Entity
 public class Estoque {
@@ -17,16 +20,12 @@ public class Estoque {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "Gondula é uma informação obrigatória.")
-	private int gondula;
-	@NotBlank(message = "Estoque é uma informação obrigatória.")
+	private int gondola;
 	private int estoque;
-	@NotBlank(message = "EstoqueMinimo é uma informação obrigatória.")
 	private int estoqueMinimo;
 	
-//	@OneToMany
-//	@JoinColumn(name = "estoque_id")
-//	private List<Produto> produtos;
+	@OneToOne
+	private Produto produto;
 	
 	public Long getId() {
 		return id;
@@ -34,17 +33,24 @@ public class Estoque {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getGondula() {
-		return gondula;
+	public int getGondola() {
+		return gondola;
 	}
-	public void setGondula(int gondula) {
-		this.gondula = gondula;
+	public void setGondola(int gondola) {
+		this.gondola = gondola;
 	}
 	public int getEstoque() {
 		return estoque;
 	}
 	public void setEstoque(int estoque) {
 		this.estoque = estoque;
+	}
+	
+	public Produto getProduto() {
+		return produto;
+	}
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 	public int getEstoqueMinimo() {
 		return estoqueMinimo;
@@ -60,6 +66,8 @@ public class Estoque {
 	public void alterarQuantidade(int quantidade) {
 		this.estoque += quantidade;
 	}
+	
+	
 
 	
 	@Override

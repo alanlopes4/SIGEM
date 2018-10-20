@@ -26,6 +26,9 @@ public class ProdutoService {
 	private HistoricoPrecoService historicoPrecoService;
 	@Autowired
 	private EntradaProdutoService entradaProdutoService;
+	@Autowired
+	private EstoqueService estoqueService;
+	
 	
 	
 	public List<Produto> listaTodos() {
@@ -50,6 +53,7 @@ public class ProdutoService {
 	        	Relatorio entradaProduto = relatorioFactory.criarRelatorio("entradaProduto", p, hp);
 	        	historicoPrecoService.adicionar((HistoricoPreco)historicoPreco);
 	        	entradaProdutoService.adicionar((EntradaProduto)entradaProduto);
+	        	estoqueService.adicionar(p);
 	        }
 	        return p;
 	    }
