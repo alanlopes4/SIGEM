@@ -107,6 +107,14 @@ public class UsuarioController {
         return mv;
     }
     
+    @GetMapping("/detalhes/{id}")
+    public ModelAndView details(@PathVariable("id") Long id) {
+    	
+    	ModelAndView mv = new ModelAndView("usuario/usuarioDetails");
+        mv.addObject("usuario", usuarioService.buscarPorId(id));         
+        return mv;
+    }
+    
     @PostMapping("/editar/{id}")
     public ModelAndView update(@Valid Usuario usuario, BindingResult result) {
          
@@ -150,6 +158,9 @@ public class UsuarioController {
     	}
     	return new ModelAndView("redirect:/sigem/usuarios").addObject("removido", true); 
     }
+    
+    
+   
  
     @PostMapping
     public ModelAndView pesquisar(UsuarioFilter usuarioFilter){

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+						<h3>Detalhes do usuário Usuário</h3>
+					</div>
+					<hr/>
+					<div th:object="${usuario}">
+					<table id="tabela_usuarios"
+				class="table ">
+				
+				<tbody>
+					<tr>
+						<th class="text-right" width="50%">Nome Completo:</th>
+						<td th:text="*{nome}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Nome de Usário:</th>
+						<td th:text="*{nomeUsuario}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">CPF:</th>
+						<td th:text="*{cpf}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Rua:</th>
+						<td th:text="*{endereco.rua}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Número:</th>
+						<td th:text="*{endereco.numero}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Complemento:</th>
+						<td th:text="*{endereco.complemento}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Bairro:</th>
+						<td th:text="*{endereco.bairro}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Cidade:</th>
+						<td th:text="*{endereco.cidade}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">CEP:</th>
+						<td th:text="*{endereco.CEP}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Cargo:</th>
+						<td th:text="*{cargo}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Data de Nascimento:</th>
+						<td th:text="*{dataNascimento}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">E-mail:</th>
+						<td th:text="*{email}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Perfil de usuário:</th>
+						<td th:text="*{perfilUsuario.nome}"></td>
+                    </tr>
+				</tbody>
+				<tfoot>
+			
+				</tfoot>
+			</table>
+						
+						<hr />
+						<div class="form-group row justify-content-center ">
+							<div class=" col-sm-2">
+								<a id="alert" class="btn btn-lg btn-primary" th:href="@{/sigem/usuarios}" >
+									Cancelar </a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			<div id="push"></div>
+		</div>
+	</section>
+</body>
+</html>
