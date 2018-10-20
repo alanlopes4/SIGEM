@@ -61,12 +61,15 @@
 				</thead>
 				<tbody>
 					<tr th:each="estoque : ${estoques}">
-						<td >Nome do produto</td>
+						<td > 
+							<span th:text="${estoque.produto.nome}"></span> - 
+							<span th:text="${estoque.produto.marca}"></span>
+						</td>
 						<td th:text="${estoque.estoqueMinimo}"></td>
 						<td th:text="${estoque.estoque}"></td>
-						<td th:text="${estoque.gondula}"></td>
+						<td th:text="${estoque.gondola}"></td>
 						<td>
-							<div class="btn-group pull-right">
+							<div class="btn-group">
                                 <a class="btn btn-sm btn-primary" th:href="@{/sigem/estoque/editar/{id}(id=${estoque.id})}" >Editar</a>
                            </div>
                         </td>

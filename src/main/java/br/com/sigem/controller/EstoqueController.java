@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,18 +43,26 @@ public class EstoqueController {
     	return mv;
     }
 	
+	 	@GetMapping("/editar/{id}")
+	    public ModelAndView edit(@PathVariable("id") Long id) {
+	    	
+	    	ModelAndView mv = new ModelAndView("estoque/estoqueUpdate");
+	    	Estoque estoque  = estoqueService.buscarPorId(id);
+	        mv.addObject("estoque", estoque);
+	         
+	        return mv;
+	    }
+	
 	
     @PostMapping("/editar/{id}")
-    public ModelAndView update(@Valid Estoque estoque, BindingResult result) {
-         
-    	
-    	
+    public ModelAndView update(Estoque estoque, BindingResult result) {
+
         if(result.hasErrors()) {
         	ModelAndView mv = new ModelAndView("estoque/estoqueUpdate");
             mv.addObject("estoque", estoque);
             return mv;
         }
-         
+                 
         estoqueService.atualizar(estoque);
         return new ModelAndView("redirect:/sigem/estoque");
     }

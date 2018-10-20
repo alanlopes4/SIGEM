@@ -16,13 +16,22 @@
 					</div>
 					<hr/>
 					<!-- MESSAGES -->
-					<form th:object="${estoque}" th:action="@{/sigem/estoques/editar/{id}(id=${estoque.id})}" method="POST"
+					<form th:object="${estoque}" th:action="@{/sigem/estoque/editar/{id}(id=${estoque.id})}" method="POST"
 						class="form-default form-horizontal" >
+						<input type="hidden" name="estoque"
+									id="estoque" class="form-control"
+									th:field="*{estoque}" />
+						<input type="hidden" name="id"
+									id="id" class="form-control"
+									th:field="*{id}" />
+						<input type="hidden" name="produto"
+									id="produto" class="form-control"
+									th:field="*{produto}" />
 						<div class="form-group row justify-content-center " >
 							<label for="estoqueMinimo" class="col-sm-2 col-form-label   text-right">Estoque Minímo</label>
 							<div class="controls col-sm-4 col-sm-4">
 								<input type="text" name="estoqueMinimo"
-									id="codigo" class="form-control"
+									id="estoqueMinimo" class="form-control"
 									th:field="*{estoqueMinimo}" 
 									autofocus="autofocus"
 									/>
@@ -45,7 +54,7 @@
 								<button type="submit" class="btn btn-lg btn-success">Atualizar</button>
 							</div>
 							<div class=" col-sm-2">
-								<a id="alert" class="btn btn-lg btn-primary" th:href="@{/sigem/estoques}" >
+								<a id="alert" class="btn btn-lg btn-primary" th:href="@{/sigem/estoque}" >
 									Cancelar </a>
 							</div>
 						</div>
