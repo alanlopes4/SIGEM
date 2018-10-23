@@ -40,7 +40,8 @@ public class EstoqueService {
 	
 	public Estoque atualizar(@Valid Estoque estoque) {
 			
-			estoque.setEstoque(estoque.getEstoque() - estoque.getGondola());
+			estoque.setEstoque(estoque.getEstoque() - estoque.getAdicionadaGondola());
+			estoque.setGondola(estoque.getGondola() + estoque.getAdicionadaGondola());
 		
 	        return estoqueRepository.saveAndFlush(estoque);
 	   }
