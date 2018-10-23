@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 /**
  * Classe responsavél por gerenciar as regras de negócios do estoque
@@ -23,6 +24,9 @@ public class Estoque {
 	private int gondola;
 	private int estoque;
 	private int estoqueMinimo;
+	
+	@Transient
+	private int adicionadaGondola;
 	
 	@OneToOne
 	private Produto produto;
@@ -51,6 +55,12 @@ public class Estoque {
 	}
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+	public int getAdicionadaGondola() {
+		return adicionadaGondola;
+	}
+	public void setAdicionadaGondola(int adicionadaGondola) {
+		this.adicionadaGondola = adicionadaGondola;
 	}
 	public int getEstoqueMinimo() {
 		return estoqueMinimo;
