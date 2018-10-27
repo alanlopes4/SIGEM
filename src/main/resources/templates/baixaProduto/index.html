@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div th:if="${param.sucesso}">
+						<script th:inline="javascript">
+								var flag = [[${param.sucesso}]]; 
+							    window.onload = function() {
+							        if(flag){
+							  			alertify.success('Sucesso');
+							        }
+								};
+						</script>
+					</div>
+					<div class="row justify-content-center">
+					  <form th:action="@{/sigem/baixaProdutos}" method="POST">
+					    <table>
+					      <tr>
+					        <td>Selecione um arquivo</td>
+					        <td><input type="file" name="file"></td>
+					        <td><button type="submit">Upload</button></td>
+					      </tr>
+					    </table>
+					  </form>
+					  <br />
+					  <hr />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
