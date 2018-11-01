@@ -50,6 +50,10 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryQuery{
 			predicates.add(builder.like(
 					builder.lower(root.get("nome")), 
 					"%"+ produtoFilter.getNome().toLowerCase()+ "%"));
+		if(!StringUtils.isEmpty(produtoFilter.getLote()))
+			predicates.add(builder.like(
+					builder.lower(root.get("lote")), 
+					"%"+ produtoFilter.getLote().toLowerCase()+ "%"));
 		if(!StringUtils.isEmpty(produtoFilter.getMarca()))
 			predicates.add(builder.like(
 					builder.lower(root.get("marca")), 

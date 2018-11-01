@@ -83,7 +83,8 @@ public class ProdutoController {
             mv.addObject("produto", produto);
             return mv;
         }
-         
+        
+        produto.setAtivo(1);
         produtoService.atualizar(produto);
         return new ModelAndView("redirect:/sigem/produtos").addObject("atualizado", true);
     }

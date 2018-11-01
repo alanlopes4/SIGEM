@@ -79,6 +79,16 @@
 								</div>
 							</div>
 							<div class="form-group row justify-content-center ">
+								<label for="lote" class="col-sm-2 col-form-label   text-right">Lote do produto</label>
+								<div class="controls col-sm-4 col-sm-4">
+									<input type="text" name="lote"
+										th:field="*{lote}"
+										id="lote" class="form-control "
+										placeholder="Lote do produto"
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
 								<label for="marca" class="col-sm-2 col-form-label   text-right">Marca do produto</label>
 								<div class="controls col-sm-4 col-sm-4">
 									<input type="text" name="marca"
@@ -119,7 +129,8 @@
 				<thead>
 					<tr>
 						<th class="">Nome</th>
-						<th class="">Código</th>
+						<th class="">Código de barras</th>
+						<th class="">Lote do produto</th>
 						<th class="">Quantidade</th>
 						<th class="">Preço unitário</th>
 						<th class="">Ações</th>
@@ -129,17 +140,19 @@
 					<tr th:if="${not #lists.isEmpty(produtos)}" th:each="produto : ${produtos}">
 						<td th:text="${produto.nome}"></td>
 						<td th:text="${produto.codigo}"></td>
+						<td th:text="${produto.lote}"></td>
 						<td th:text="${produto.quantidade}"></td>
 						<td th:text="${produto.precoUnitario}"></td>
 						<td>
 							<div class="btn-group pull-right">
                                 <a class="btn btn-sm btn-primary" th:href="@{/sigem/produtos/editar/{id}(id=${produto.id})}" >Editar</a>
-                                <a class="delete btn btn-sm btn-danger" th:href="@{/sigem/produtos/remover/{id}(id=${produto.id})}">Excluir</a>
+                                <button id="excluir" type="button" th:value="${produto.id}" class="btn btn-sm btn-danger"  data-toggle="modal"  data-target="#confirmacaoModal">
+                                Excluir</button>
                            </div>
                         </td>
                     </tr>
                     <tr th:if="${#lists.isEmpty(produtos)}">
-                    	<td colspan="5">
+                    	<td colspan="6">
 	                    	<div class="alert alert-info" style="background-color: #f1f3f5;" role="alert">
 							  Nenhum registro encontrado
 							</div> 
@@ -191,6 +204,41 @@
 						    </div>
 						  </div>
 						</div>
+						
+						<div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModalLabel" aria-hidden="true" 
+							>
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="confirmacaoModalLabel">Exclusão de produto</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        Tem certeza disso?
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						        
+						        <a  id="excluirModal" class="delete btn btn-primary" >Excluir</a>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<script th:inline="javascript">
+								/*<![CDATA[*/
+									window.onload = function() {
+										var produtoID = 0;
+								    	$('#excluir').on('click', function(){
+								    		 produtoId = $(this).val();
+								    	});
+								    	$('#confirmacaoModal').on('show.bs.modal', function (e) {
+								            $(this).find('#excluirModal').attr('href', '/sigem/produtos/remover/' + produtoId);
+								        });
+									};
+								/*]]>*/
+							</script>
 	</section>
 	<script>
 			$(document).ready(function() {

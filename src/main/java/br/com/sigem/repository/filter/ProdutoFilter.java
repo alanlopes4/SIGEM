@@ -8,6 +8,7 @@ public class ProdutoFilter {
 	private Long id;
 	private Integer codigo;
 	private String nome;
+	private String lote;
 	private String marca;
 	private Integer quantidade;
 	private Integer quantidadeMinima;
@@ -42,6 +43,12 @@ public class ProdutoFilter {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getLote() {
+		return lote;
+	}
+	public void setLote(String lote) {
+		this.lote = lote;
 	}
 	public String getMarca() {
 		return marca;

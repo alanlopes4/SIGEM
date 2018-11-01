@@ -35,6 +35,10 @@ public class Produto {
 	private String nome;
 	
 	@Column(nullable = false)
+	@NotBlank(message = "Lote do produto é uma informação obrigatória")
+	private String lote;
+	
+	@Column(nullable = false)
 	@NotBlank(message = "Marca é uma informação obrigatória")
 	private String marca;
 	
@@ -76,6 +80,7 @@ public class Produto {
 	public Produto() {}
 	
 	public Produto(Long id,String nome,
+			 String lote,
 			 String marca,
 			 Integer quantidade,
 			 Integer quantidadeMinima,
@@ -87,6 +92,7 @@ public class Produto {
 		
 		this.id = id;
 		this.nome = nome;
+		this.lote = lote;
 		this.marca = marca;
 		this.quantidade = quantidade;
 		this.quantidadeMinima = quantidadeMinima;
@@ -121,6 +127,14 @@ public class Produto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getLote() {
+		return lote;
+	}
+
+	public void setLote(String lote) {
+		this.lote = lote;
 	}
 
 	public String getMarca() {
