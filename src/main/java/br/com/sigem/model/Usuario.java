@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -55,6 +56,7 @@ public class Usuario {
 	@Convert(converter = AdapterLocalDate.class)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@NotNull(message = "Data Nascimento é uma informação obrigatória")
+	@Past(message="Data de nascimento inválida. Somente datas anteriores ao dia atual são permitidas.")
 	private LocalDate dataNascimento;
 	
 	@Column(nullable = false, columnDefinition = "int(1) default 1")
