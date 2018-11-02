@@ -64,6 +64,14 @@ public class ProdutoController {
         return new ModelAndView("redirect:/sigem/produtos").addObject("sucesso", true);
     }
     
+    @GetMapping("/detalhes/{id}")
+    public ModelAndView details(@PathVariable("id") Long id) {
+    	
+    	ModelAndView mv = new ModelAndView("produto/produtoDetails");
+        mv.addObject("produto", produtoService.buscarPorId(id));         
+        return mv;
+    }
+    
     @GetMapping("/editar/{id}")
     public ModelAndView edit(@PathVariable("id") Long id) {
     	

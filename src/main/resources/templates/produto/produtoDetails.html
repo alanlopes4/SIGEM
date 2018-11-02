@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+						<h3>Detalhes do produto Produto</h3>
+					</div>
+					<hr/>
+					<div th:object="${produto}">
+					<table id="tabela_produto"
+				class="table ">
+				
+				<tbody>
+					<tr>
+						<th class="text-right" width="50%">Código de barras:</th>
+						<td th:text="*{codigo}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Nome do produto:</th>
+						<td th:text="*{nome}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Lote do produto:</th>
+						<td th:text="*{lote}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Marca do produto:</th>
+						<td th:text="*{marca}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Quantidade no lote:</th>
+						<td th:text="*{quantidade}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Quantidade mínima do produto:</th>
+						<td th:text="*{quantidadeMinima}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Preço unitário:</th>
+						<td th:text="*{precoUnitario}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Preço do lote:</th>
+						<td th:text="*{precoLote}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Data da compra:</th>
+						<td th:text="*{dataCompra}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Pericível:</th>
+						<td th:text="*{pericivel}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Data de validade:</th>
+						<td th:text="*{validade}"></td>
+                    </tr>
+                    <tr>
+						<th class="text-right" width="50%">Descrição:</th>
+						<td th:text="*{descricao}"></td>
+                    </tr>
+				</tbody>
+				<tfoot>
+			
+				</tfoot>
+			</table>
+						
+						<hr />
+						<div class="form-group row justify-content-center ">
+							<div class=" col-sm-2">
+								<a id="alert" class="btn btn-lg btn-primary" th:href="@{/sigem/produtos}" >
+									Voltar </a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			<div id="push"></div>
+		</div>
+	</section>
+</body>
+</html>
