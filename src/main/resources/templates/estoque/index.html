@@ -70,7 +70,10 @@
 						<td th:text="${estoque.gondola}"></td>
 						<td>
 							<div class="btn-group">
-                                <a class="btn btn-sm btn-primary" th:href="@{/sigem/estoque/editar/{id}(id=${estoque.id})}" >Editar</a>
+                                <a class="btn btn-sm btn-success" th:href="@{/sigem/estoque/editar/{id}(id=${estoque.id})}" >Entrada</a>
+                           </div>
+                           <div class="btn-group">
+                                <a class="btn btn-sm btn-primary" th:href="@{/sigem/estoque/retirar/{id}(id=${estoque.id})}" >Retirada</a>
                            </div>
                         </td>
                     </tr> 

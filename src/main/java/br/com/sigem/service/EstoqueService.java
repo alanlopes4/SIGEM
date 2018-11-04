@@ -1,5 +1,6 @@
 package br.com.sigem.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.sigem.model.Estoque;
 import br.com.sigem.model.Produto;
+import br.com.sigem.model.relatorio.HistoricoRetiradaProduto;
 import br.com.sigem.repository.EstoqueRepository;
 import br.com.sigem.repository.filter.EstoqueFilter;
 
@@ -16,6 +18,9 @@ import br.com.sigem.repository.filter.EstoqueFilter;
 public class EstoqueService {
 	@Autowired
 	private EstoqueRepository estoqueRepository;
+	
+	@Autowired
+	private HistoricoRetiradaProdutoService historicoRetiradaProdutoService;
 	
 	public Estoque adicionar(@Valid Produto produto) {
 		
@@ -45,6 +50,14 @@ public class EstoqueService {
 		
 	        return estoqueRepository.saveAndFlush(estoque);
 	   }
+	
+	public Estoque retirar(@Valid Estoque estoque) {
+		
+		estoque.setGondola(estoque.getGondola() - estoque.getRetiradoGondola());
+		historicoRetiradaProdutoService.adicionar(new HistoricoRetiradaProduto(estoque.getProduto(), LocalDate.now(), estoque.getMotivo(), estoque.getRetiradoGondola()));
+		
+		return estoqueRepository.saveAndFlush(estoque);
+	}
 	
 	    
 	public List<Estoque> filtrar(EstoqueFilter estoqueFilter){

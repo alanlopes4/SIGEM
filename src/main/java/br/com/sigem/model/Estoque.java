@@ -28,6 +28,12 @@ public class Estoque {
 	@Transient
 	private int adicionadaGondola;
 	
+	@Transient
+	private int retiradoGondola;
+	
+	@Transient
+	private String motivo;
+	
 	@OneToOne
 	private Produto produto;
 	
@@ -62,6 +68,13 @@ public class Estoque {
 	public void setAdicionadaGondola(int adicionadaGondola) {
 		this.adicionadaGondola = adicionadaGondola;
 	}
+	
+	public int getRetiradoGondola() {
+		return retiradoGondola;
+	}
+	public void setRetiradoGondola(int retiradoGondola) {
+		this.retiradoGondola = retiradoGondola;
+	}
 	public int getEstoqueMinimo() {
 		return estoqueMinimo;
 	}
@@ -77,9 +90,12 @@ public class Estoque {
 		this.estoque += quantidade;
 	}
 	
-	
-
-	
+	public String getMotivo() {
+		return motivo;
+	}
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

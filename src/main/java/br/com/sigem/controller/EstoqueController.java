@@ -66,5 +66,30 @@ public class EstoqueController {
         estoqueService.atualizar(estoque);
         return new ModelAndView("redirect:/sigem/estoque");
     }
+    
+    
+    @GetMapping("/retirar/{id}")
+    public ModelAndView retirar(@PathVariable("id") Long id) {
+    	
+    	ModelAndView mv = new ModelAndView("estoque/estoqueRetirada");
+    	Estoque estoque  = estoqueService.buscarPorId(id);
+        mv.addObject("estoque", estoque);
+         
+        return mv;
+    }
+    
+    @PostMapping("/retirar/{id}")
+    public ModelAndView retirar(Estoque estoque, BindingResult result) {
+
+        if(result.hasErrors()) {
+        	ModelAndView mv = new ModelAndView("estoque/estoqueRetirada");
+            mv.addObject("estoque", estoque);
+            return mv;
+        }
+                 
+        estoqueService.retirar(estoque);
+        return new ModelAndView("redirect:/sigem/estoque");
+    }
+    
      
 }
