@@ -43,6 +43,10 @@ public class Permissao{
 	
 	
 
+	public Permissao( String nome) {
+		this.nome = nome;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

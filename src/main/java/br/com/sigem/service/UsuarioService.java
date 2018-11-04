@@ -80,7 +80,8 @@ public class UsuarioService {
      */
     public void remover(Long id) {
     	Usuario usuario = buscarPorId(id);
-    	usuarioRepository.delete(usuario);
+    	usuario.setAtivo(0);
+    	usuarioRepository.saveAndFlush(usuario);
     }
     
     
