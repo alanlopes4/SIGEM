@@ -46,7 +46,7 @@ public class UsuarioTeste extends SigemApplicationTests{
 		Assertions.assertThat(usuario.getNomeUsuario()).isEqualTo("alanlopes4");
 		Assertions.assertThat(usuario.getEmail()).isEqualTo("alanlopes4@gmail.com");
 		Assertions.assertThat(usuario.getCpf()).isEqualTo("090.614.349-71");
-		Assertions.assertThat(usuario.getCargo()).isEqualTo("Funcionário");
+		Assertions.assertThat(usuario.getCargo()).isEqualTo("Gerente");
 		Assertions.assertThat(usuario.getEndereco().getCEP()).isEqualTo("09000123");
 		Assertions.assertThat(usuario.getEndereco().getCidade()).isEqualTo("Paranavai");
 		Assertions.assertThat(usuario.getEndereco().getBairro()).isEqualTo("São Jorge");
@@ -68,11 +68,21 @@ public class UsuarioTeste extends SigemApplicationTests{
 	}
 	
 	@Test
+	public void atualizar() {
+		
+		Usuario usuario = usuarioService.buscarPorId(1L);
+		usuario.setCargo("Funcionario");
+		Usuario usuarioAtualizado = usuarioService.atualizar(usuario);
+		Assertions.assertThat(usuarioAtualizado.getCargo()).isEqualTo("Funcionario");
+		
+	}
+	
+	@Test
 	 public void remover() {
 		
 		usuarioService.remover(1L);
 		Usuario usuario = usuarioService.buscarPorId(1L);
-		Assertions.assertThat(usuario.isAtivo()).isEqualTo(false);
+		Assertions.assertThat(usuario.isAtivo()).isEqualTo(0);
 		
 	 }
 	 
