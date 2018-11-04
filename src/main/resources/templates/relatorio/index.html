@@ -20,18 +20,23 @@
 					<hr/>   
 							<div class="form-group row justify-content-center ">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center">
-									<a sec:authorize="hasRole('ROLE_RELATORIOS_ESTOQUEDISPONIVEL')" th:href="@{/sigem/relatorios/estoqueDisponivel}" class="btn btn-block btn-lg btn-info">Relatório de Estoque Disponível</a>
+									<a sec:authorize="hasRole('ROLE_RELATORIOS_ESTOQUEDISPONIVEL')" th:href="@{/sigem/relatorios/estoqueDisponivel}" class="btn btn-block btn-lg btn-info">
+									Relatório de Estoque Disponível</a>
 								</div>
-								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center">
-									<a sec:authorize="hasRole('ROLE_RELATORIOS_ENTRADAPRODUTO')" th:href="@{/sigem/relatorios/entradaProduto}" class="btn btn-block btn-lg btn-info"  
-									>Relatório de Entrada de Produtos</a>
-									
-								</div>
-							</div>
-							<div class="form-group row justify-content-center ">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center">
 									<a sec:authorize="hasRole('ROLE_RELATORIOS_HISTORICOPRECO')"th:href="@{/sigem/relatorios/historicoPreco}" class="btn btn-block btn-lg btn-info"   
 									>Relatório de histórico de preço</a>
+								</div>
+								
+							</div>
+							<div class="form-group row justify-content-center ">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center">
+									<a sec:authorize="hasRole('ROLE_RELATORIOS_ENTRADAPRODUTO')" th:href="@{/sigem/relatorios/entradaProduto}" class="btn btn-block btn-lg btn-info"  
+									>Relatório de Entrada de Produtos</a>
+								</div>
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center">
+									<a th:href="@{/sigem/relatorios/retiradaProduto}" class="btn btn-block btn-lg btn-info"   
+									>Relatório de Retirada de Produtos</a>
 								</div>
 							</div>
 					

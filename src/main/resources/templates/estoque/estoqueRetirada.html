@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					<div class="row justify-content-center">
+						<h3>Atualizar Estoque</h3>
+					</div>
+					<hr/>
+					<!-- MESSAGES -->
+					<form th:object="${estoque}" th:action="@{/sigem/estoque/retirar/{id}(id=${estoque.id})}" method="POST"
+						class="form-default form-horizontal" >
+						<input type="hidden" name="estoque"
+									id="estoque" class="form-control"
+									th:field="*{estoque}" />
+						<input type="hidden" name="id"
+									id="id" class="form-control"
+									th:field="*{id}" />
+						<input type="hidden" name="produto"
+									id="produto" class="form-control"
+									th:field="*{produto}" />
+						<input type="hidden" name="gondola"
+									id="gondola" class="form-control"
+									th:field="*{gondola}" />
+						<input type="hidden" name="estoqueMinimo"
+									id="estoqueMinimo" class="form-control"
+									th:field="*{estoqueMinimo}" />
+						<div class="form-group row justify-content-center " >
+							<label for="retiradoGondola" class="col-sm-2 col-form-label   text-right">Quantidade retirada da Gôndola</label>
+							<div class="controls col-sm-4 col-sm-4">
+								<input type="text" name="gondola"
+									id="retiradoGondola" class="form-control"
+									th:field="*{retiradoGondola}" 
+									/>
+							</div>
+						</div>
+						<div class="form-group row justify-content-center ">
+							<label for="perfilUsuario" class="col-sm-2 col-form-label   text-right">Motivo<span style="color: red;">*</span></label>
+							<div class="controls col-sm-4 col-sm-4">
+								<select name="motivo" class="form-control " data-type="select2"
+									>
+									<option th:field="*{motivo}" th:value="Venda" th:text="Venda" />	
+									<option th:field="*{motivo}" th:value="Danificado" th:text="Danificado" />	
+									<option th:field="*{motivo}" th:value="Roubo" th:text="Roubo" />									
+								</select>
+							</div>
+						</div>          
+						<hr />
+						<div class="form-group row justify-content-center ">
+							<div class="col-sm-2 text-right">
+								<button type="submit" class="btn btn-lg btn-success">Atualizar</button>
+							</div>
+							<div class=" col-sm-2">
+								<a id="alert" class="btn btn-lg btn-primary" th:href="@{/sigem/estoque}" >
+									Cancelar </a>
+							</div>
+						</div>
+				</form>
+				</div>
+				</div>
+			<div id="push"></div>
+		</div>
+	</section>
+</body>
+</html>
