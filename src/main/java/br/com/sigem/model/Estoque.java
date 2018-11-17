@@ -24,12 +24,14 @@ public class Estoque {
 	private int gondola;
 	private int estoque;
 	private int estoqueMinimo;
+	private String mensagem;
 	
 	@Transient
 	private int adicionadaGondola;
 	
 	@Transient
 	private int retiradoGondola;
+	
 	
 	@Transient
 	private String motivo;
@@ -95,6 +97,14 @@ public class Estoque {
 	}
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
+	}
+
+	
+	public String getMensagem() {
+		return mensagem;
+	}
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
 	}
 	@Override
 	public int hashCode() {

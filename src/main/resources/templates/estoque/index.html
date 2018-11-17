@@ -57,6 +57,7 @@
 						<th class="">Estoque</th>
 						<th class="">Gôndola</th>
 						<th class="">Ação</th>
+						<th class="">Alerta</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -76,6 +77,7 @@
                                 <a class="btn btn-sm btn-primary" th:href="@{/sigem/estoque/retirar/{id}(id=${estoque.id})}" >Retirada</a>
                            </div>
                         </td>
+                        <td th:text="${estoque.mensagem}"></td>
                     </tr> 
 				</tbody>
 				<tfoot>

@@ -1,12 +1,10 @@
 package br.com.sigem;
 
-import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.Valid;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
