@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -33,6 +34,30 @@ public class HistoricoRetiradaProdutoRepositoryImpl implements HistoricoRetirada
 		TypedQuery<HistoricoRetiradaProduto> query = manager.createQuery(criteria);
 				
 		return query.getResultList(); 
+	}
+	
+
+	@Override
+	public List<Object[]> filtrar(LocalDate dataInicio, LocalDate dataFim, String motivo) {
+		CriteriaBuilder builder =  manager.getCriteriaBuilder();
+		CriteriaQuery<HistoricoRetiradaProduto> criteria = builder.createQuery(HistoricoRetiradaProduto.class);
+		
+		Root<HistoricoRetiradaProduto> root = criteria.from(HistoricoRetiradaProduto.class);
+		
+		
+		
+		Predicate[] predicates = criarRestricoes(dataInicio, dataFim, motivo, builder, root);
+		criteria.where(predicates);
+		Query query = manager.createNativeQuery("SELECT p.nome as nome, h.motivo as motivo, SUM(h.quantidade) as quantidade FROM "
+				+ "historico_retirada_produto h INNER JOIN produto p ON p.id = h.produto_id "
+				+ "WHERE h.data_retirada BETWEEN :dataInicio AND :dataFim AND h.motivo LIKE :motivo "
+				+ "GROUP BY p.nome ORDER BY p.nome ASC");
+		query.setParameter("dataInicio", dataInicio);
+		query.setParameter("dataFim", dataFim);
+		query.setParameter("motivo", motivo);
+		List<Object[]> dados = query.getResultList();
+				
+		return dados; 
 	}
 
 	
@@ -69,6 +94,19 @@ public class HistoricoRetiradaProdutoRepositoryImpl implements HistoricoRetirada
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}
 	
+	private Predicate[] criarRestricoes(LocalDate dataInicio, LocalDate dataFim, String motivo, CriteriaBuilder builder, Root<HistoricoRetiradaProduto> root) {
+		List<Predicate> predicates	= new ArrayList<>();
+
+		if(dataInicio != null && dataFim != null) {
+			predicates.add(builder.greaterThanOrEqualTo(root.get("dataRetirada"), dataInicio));
+			predicates.add(builder.lessThanOrEqualTo(root.get("dataRetirada"), dataFim));
+			predicates.add(builder.equal(root.get("motivo"), motivo));
+		}
+		
+	
+		return predicates.toArray(new Predicate[predicates.size()]);
+	}
+	
 	private Predicate[] criarRestricoesFiltrarPorProduto(Produto produto, CriteriaBuilder builder, Root<HistoricoRetiradaProduto> root) {
 		List<Predicate> predicates	= new ArrayList<>();
 		
@@ -79,5 +117,7 @@ public class HistoricoRetiradaProdutoRepositoryImpl implements HistoricoRetirada
 	
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}
+
+
 	
 }
