@@ -95,5 +95,30 @@ public class RetiradaProdutoController {
 		return new ModelAndView("redirect:/sigem/relatorios/retiradaProduto").addObject("error", true);
 	}
 	
+	@PostMapping("/gerarGrafico")
+	public ModelAndView gerarGrafico(@RequestParam("dataInicioModal") String dataInicio, @RequestParam("dataFimModal") String dataFim, @RequestParam("motivo") String motivo) {
+		
+		
+		ModelAndView mv = new ModelAndView("relatorio/retiradaProduto/grafico");
+		LocalDate localDateInicio, localDateFim;
+		if(dataInicio != null && !dataInicio.equals("") && dataFim != null && !dataFim.equals("")) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			localDateInicio = LocalDate.parse(dataInicio, formatter);
+			localDateFim = LocalDate.parse(dataFim, formatter);
+			List<Object[]> dados = retiradaProdutoService.filtrar(localDateInicio, localDateFim,  motivo);
+		
+			mv.addObject("dados", dados);
+			mv.addObject("motivo", motivo);
+			mv.addObject("dataInicio", formatter.format(localDateInicio));
+			mv.addObject("dataFim", formatter.format(localDateInicio));
+			
+		}else {
+			return new ModelAndView("redirect:/sigem/relatorios/retiradaProduto").addObject("error", true);
+		}
+		
+		
+		return mv;
+	}
+	
 	
 }

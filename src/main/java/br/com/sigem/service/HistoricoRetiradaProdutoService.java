@@ -30,13 +30,19 @@ public class HistoricoRetiradaProdutoService {
 		return historicoRetiradaProdutoRepository.filtrar(dataInicio, dataFim);
 	}
 
+	public List<Object[]> filtrar(LocalDate dataInicio, LocalDate dataFim, String motivo){
+		
+		return historicoRetiradaProdutoRepository.filtrar(dataInicio, dataFim, motivo);
+	}
+
+	
 	public HistoricoRetiradaProduto filtrarPorProduto(Produto produto) {
 		//return historicoRetiradaProdutoRepository.findFirstByProdutoOrderByDataRetiradaDesc(produto);
 		return null;
 	}
 	
 	public List<HistoricoRetiradaProduto> listarTodos(){
+		
 		return historicoRetiradaProdutoRepository.findAll();
 	}
-
 }
