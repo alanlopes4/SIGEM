@@ -29,6 +29,33 @@
 										/>
 								</div>
 							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="estoque" class="col-sm-2 col-form-label   text-right">Estoque</label>
+								<div class="controls col-sm-4">
+									<input type="text" name="estoque"
+										th:field="*{estoque}"
+										id="estoque" class="form-control "
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="estoqueMinimo" class="col-sm-2 col-form-label   text-right">Estoque Mínimo</label>
+								<div class="controls col-sm-4">
+									<input type="text" name="estoqueMinimo"
+										th:field="*{estoqueMinimo}"
+										id="estoqueMinimo" class="form-control "
+										/>
+								</div>
+							</div>
+							<div class="form-group row justify-content-center ">
+								<label for="gondola" class="col-sm-2 col-form-label   text-right">Gondola</label>
+								<div class="controls col-sm-4">
+									<input type="text" name="gondola"
+										th:field="*{gondola}"
+										id="gondola" class="form-control "
+										/>
+								</div>
+							</div>
 							<hr />
 							<div class="form-group row justify-content-center ">
 								<div class="col-sm-2 text-right">
@@ -62,10 +89,12 @@
 						<td th:text="${estoque.gondola}"></td>
 						<td>
 							<div class="btn-group">
-                                <a class="btn btn-sm btn-success" th:href="@{/sigem/estoque/editar/{id}(id=${estoque.id})}" >Entrada</a>
+                                <a class="btn btn-sm btn-success" th:href="@{/sigem/estoque/editar/{id}(id=${estoque.id})}" >
+                                <i class="fa fa-plus"></i> Gôndola</a>
                            </div>
                            <div class="btn-group">
-                                <a class="btn btn-sm btn-primary" th:href="@{/sigem/estoque/retirar/{id}(id=${estoque.id})}" >Retirada</a>
+                                <a class="btn btn-sm btn-primary" th:href="@{/sigem/estoque/retirar/{id}(id=${estoque.id})}" >
+                                <i class="fa fa-minus"></i> Gôndola</a>
                            </div>
                         </td>
                         <td th:text="${estoque.mensagem}"></td>

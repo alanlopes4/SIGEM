@@ -31,14 +31,58 @@ public class EstoqueRepositoryImpl implements EstoqueRepositoryQuery{
 		//Predicate[] predicates = criarRestricoes(estoqueFilter, builder, root);
 		//criteria.where(predicates);
 				
-		String sql = "SELECT * FROM estoque e INNER JOIN produto p ON p.id = e.produto_id";
-		if(!estoqueFilter.getProduto().getNome().equals(""))
-			sql += " WHERE p.nome LIKE :nome";
+		String sql = "SELECT * FROM estoque e INNER JOIN produto p ON p.id = e.produto_id ";
+		String where = "";
+		boolean pred = false;
 		
+		if(!estoqueFilter.getProduto().getNome().equals("")) {
+			where += " p.nome LIKE :nome";
+			pred = true;
+		}
+		if(estoqueFilter.getEstoque()!= null)
+			if(pred) {
+				where += " AND e.estoque = :estoque";
+				pred = true;
+			}
+			else {
+				where += " e.estoque = :estoque";
+				pred = true;
+			}
+		
+		if(estoqueFilter.getEstoqueMinimo()!= null)
+			if(pred) {
+				where += " AND e.estoque_minimo = :estoque_minimo";
+				pred = true;
+			}
+			else {
+				where += " e.estoque_minimo = :estoque_minimo";
+				pred = true;
+			}
+		
+		if(estoqueFilter.getGondola()!= null)
+			if(pred) {
+				where += " AND e.gondola = :gondola";
+				pred = true;
+			}
+			else {
+				where += " e.gondola = :gondola";
+				pred = true;
+			}
+		
+		if(pred)
+			where = "WHERE "+where;
+		
+		sql = sql+where;
 		Query query = manager.createNativeQuery(sql, Estoque.class);
 		
 		if(!estoqueFilter.getProduto().getNome().equals(""))
 			query.setParameter("nome", "%"+estoqueFilter.getProduto().getNome()+"%");
+		if(estoqueFilter.getEstoque()!= null)
+			query.setParameter("estoque", estoqueFilter.getEstoque());
+		if(estoqueFilter.getEstoqueMinimo()!= null)
+			query.setParameter("estoque_minimo", estoqueFilter.getEstoqueMinimo());
+		if(estoqueFilter.getGondola()!= null)
+			query.setParameter("gondola", estoqueFilter.getGondola());
 		
 		
 		List<Estoque> dados =  query.getResultList();
