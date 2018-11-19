@@ -68,6 +68,8 @@
 									>
 									<i class="fa fa-print"></i>
 							</button>
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmacaoModalGrafico">
+										Gráfico</button>
 							</div>
 						</div>
 						<hr />
@@ -150,7 +152,49 @@
 						</div>
 					</div>
 				</div>
-
+				
+				<!--  MODAL -->
+				<div class="modal fade" id="confirmacaoModalGrafico" tabindex="-1"
+					role="dialog" aria-labelledby="confirmacaoModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="confirmacaoModalLabel">Geração de gráfico</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form th:action="@{/sigem/relatorios/historicoPreco/gerarGrafico}"
+								method="POST" class="form-default form-horizontal">
+								<div class="modal-body">
+									<div class="form-group row justify-content-left">
+											<label for="dataInicioModal"
+												class="col-sm-4 col-form-label   text-right">Data de início</label>
+											<div class="controls col-sm-4">
+												<input type="text" name="dataInicioModal" id="dataInicioModal"
+													class="form-control date" placeholder="dd/mm/yyyy"/>
+											</div>
+									</div>
+									<div class="form-group row justify-content-left">
+											<label for="dataFimModal"
+												class="col-sm-4 col-form-label   text-right">Data término</label>
+											<div class="controls col-sm-4 col-sm-4">
+												<input type="text" name="dataFimModal" id="dataFimModal"
+													class="form-control date" placeholder="dd/mm/yyyy"/>
+											</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Cancelar</button>
+									<button type="submit" class="btn btn-primary">Confirmar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
