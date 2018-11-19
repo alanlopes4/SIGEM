@@ -38,7 +38,7 @@ public class UsuarioTeste extends SigemApplicationTests{
 	public void buscarPorEmail() {
 		
 		String email = "alanlopes4@gmail.com";
-		Usuario usuario = usuarioService.buscarPorEmail(email);
+		Usuario usuario = usuarioService.findUsuariobyEmail(email);
 		
 		Assertions.assertThat(usuario.getNome()).isEqualTo("Alan Lopes de Sousa Freitas");
 		Assertions.assertThat(usuario.getNomeUsuario()).isEqualTo("alanlopes4");

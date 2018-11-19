@@ -76,20 +76,8 @@ public class ResetarSenhaController {
         
         TokenResetarSenha token = tokenRepository.findByToken(form.getToken());
         Usuario usuario = token.getUsuario();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        String updatedPassword = form.getSenha();
-        if(updatedPassword != "")
-        	usuario.setSenha(updatedPassword);
-        usuarioService.atualizar(usuario);
-=======
-=======
->>>>>>> 9835af0b4fcb7f3967d7b490235621adf2dfda89
         String updatedPassword = new BCryptPasswordEncoder().encode(form.getSenha());
-        
-        
         usuarioService.updatePassword(updatedPassword, usuario.getId());
->>>>>>> Funcionalidade - Esqueceu Senha
         tokenRepository.delete(token);
 
         return new ModelAndView("redirect:/sigem/login").addObject("resetSuccess", true);

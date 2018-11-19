@@ -37,20 +37,6 @@ public class UsuarioService {
 	public List<Usuario> listarTodosAtivos(){
 		return usuarioRepository.findByAtivo(1);
 	}
-     
-	/**
-	 * Busca o usuário de acorodo com o email digitado
-	 * @param email
-	 * @return
-	 */
-	public Usuario buscarPorEmail(String email) {
-		
-			List<Usuario> usuarios = 	usuarioRepository.findByEmail(email);
-			if(!usuarios.isEmpty())
-				return usuarios.get(0);
-			else
-				return null;
-	}
 	
 	/**
 	 * Buscar o usuário de acordo com o id digitado
