@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,6 +82,11 @@ public class EstoqueController {
     @PostMapping("/retirar/{id}")
     public ModelAndView retirar(Estoque estoque, BindingResult result) {
 
+    	
+    	if(estoque.getRetiradoGondola() > estoque.getGondola()){
+    		result.addError(new FieldError("estoque", "retiradoGondola", "Quantidade retirada superior a quantidade de produtos na gondola"));
+    	}
+    	
         if(result.hasErrors()) {
         	ModelAndView mv = new ModelAndView("estoque/estoqueRetirada");
             mv.addObject("estoque", estoque);

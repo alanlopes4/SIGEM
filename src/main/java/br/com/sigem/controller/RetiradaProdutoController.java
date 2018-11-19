@@ -84,7 +84,7 @@ public class RetiradaProdutoController {
 			params.put("DATA_INICIO", data_inicio);
 			params.put("DATA_FIM", data_final);
 			GeradorRelatorio geradorRelatorio = new GeradorRelatorio(nomeArquivo, params, Conexao.getConnection());
-			geradorRelatorio.gerarPDFParaOutputStream(new SimpleOutputStreamExporterOutput(caminho+"entrada_produtos.pdf"));
+			geradorRelatorio.gerarPDFParaOutputStream(new SimpleOutputStreamExporterOutput(caminho+"retirada_produtos.pdf"));
 			
 			return new ModelAndView("redirect:/sigem/relatorios/retiradaProduto").addObject("gerado", true);
 			
