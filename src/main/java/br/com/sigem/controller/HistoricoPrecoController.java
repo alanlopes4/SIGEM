@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +84,30 @@ public class HistoricoPrecoController {
 		}
 		
 		return new ModelAndView("redirect:/sigem/relatorios/historicoPreco").addObject("error", true);
+	}
+	
+	@PostMapping("/gerarGrafico")
+	public ModelAndView gerarGrafico(@RequestParam("dataInicioModal") String dataInicio, @RequestParam("dataFimModal") String dataFim) {
+		
+		
+		ModelAndView mv = new ModelAndView("relatorio/historicoPreco/grafico");
+		LocalDate localDateInicio, localDateFim;
+		if(dataInicio != null && !dataInicio.equals("") && dataFim != null && !dataFim.equals("")) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			localDateInicio = LocalDate.parse(dataInicio, formatter);
+			localDateFim = LocalDate.parse(dataFim, formatter);
+			List<Object[]> dados = historicoPrecoService.filtrarGrafico(localDateInicio, localDateFim);
+		
+			mv.addObject("dados", dados);
+			mv.addObject("dataInicio", formatter.format(localDateInicio));
+			mv.addObject("dataFim", formatter.format(localDateFim));
+			
+		} else {
+			return new ModelAndView("redirect:/sigem/relatorios/historicoPreco").addObject("error", true);
+		}
+		
+		
+		return mv;
 	}
 
 	

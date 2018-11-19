@@ -2,7 +2,6 @@ package br.com.sigem.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +27,11 @@ public class HistoricoPrecoService {
 	
 	public List<HistoricoPreco> filtrar(LocalDate dataInicio, LocalDate dataFim){
 		return historicoPrecoRepository.filtrar(dataInicio, dataFim);
+	}
+	
+	public List<Object[]> filtrarGrafico(LocalDate dataInicio, LocalDate dataFim){
+		
+		return historicoPrecoRepository.filtrarGrafico(dataInicio, dataFim);
 	}
 
 	public HistoricoPreco filtrarPorProduto(Produto produto) {

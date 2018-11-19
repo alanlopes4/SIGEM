@@ -9,6 +9,8 @@ import br.com.sigem.model.relatorio.HistoricoPreco;
 public interface HistoricoPrecoRepositoryQuery {
 
 	public List<HistoricoPreco> filtrar(LocalDate dataInicio, LocalDate dataFim);	
+	
+	public List<Object[]> filtrarGrafico(LocalDate dataInicio, LocalDate dataFim);
 
 	public HistoricoPreco filtrarPorProduto(Produto produto);
 }
