@@ -1,12 +1,24 @@
 package br.com.sigem.repository.filter;
 
+
+import br.com.sigem.model.Produto;
+
 public class EstoqueFilter {
 	
 	private Long id;
-	private String nome;
-	private Integer gondula;
-	private Integer estoque;
-	private Integer estoqueMinimo;
+	private int gondola;
+	private int estoque;
+	private int estoqueMinimo;
+	private String mensagem;
+	
+	private int adicionadaGondola;
+	
+	private int retiradoGondola;
+	
+	
+	private String motivo;
+	
+	private Produto produto;
 	
 	public Long getId() {
 		return id;
@@ -14,29 +26,67 @@ public class EstoqueFilter {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	public int getGondola() {
+		return gondola;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setGondola(int gondola) {
+		this.gondola = gondola;
 	}
-	public Integer getEstoque() {
+	public int getEstoque() {
 		return estoque;
 	}
-	public void setEstoque(Integer quantidade) {
-		this.estoque = quantidade;
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
 	}
-	public Integer getGondula() {
-		return gondula;
+	
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setGondula(int gondula) {
-		this.gondula = gondula;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
-	public Integer getEstoqueMinimo() {
+	public int getAdicionadaGondola() {
+		return adicionadaGondola;
+	}
+	public void setAdicionadaGondola(int adicionadaGondola) {
+		this.adicionadaGondola = adicionadaGondola;
+	}
+	
+	public int getRetiradoGondola() {
+		return retiradoGondola;
+	}
+	public void setRetiradoGondola(int retiradoGondola) {
+		this.retiradoGondola = retiradoGondola;
+	}
+	public int getEstoqueMinimo() {
 		return estoqueMinimo;
 	}
 	public void setEstoqueMinimo(int estoqueMinimo) {
 		this.estoqueMinimo = estoqueMinimo;
 	}
+	
+	public void descontarQuantidade(int quantidade) {
+		this.estoque -= quantidade;
+	}
+	
+	public void alterarQuantidade(int quantidade) {
+		this.estoque += quantidade;
+	}
+	
+	public String getMotivo() {
+		return motivo;
+	}
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
+	
+	public String getMensagem() {
+		return mensagem;
+	}
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
 	
 }

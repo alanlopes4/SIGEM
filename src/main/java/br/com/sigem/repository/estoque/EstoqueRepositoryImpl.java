@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -28,29 +28,33 @@ public class EstoqueRepositoryImpl implements EstoqueRepositoryQuery{
 		
 		Root<Estoque> root = criteria.from(Estoque.class);
 		
-		Predicate[] predicates = criarRestricoes(estoqueFilter, builder, root);
-		criteria.where(predicates);
+		//Predicate[] predicates = criarRestricoes(estoqueFilter, builder, root);
+		//criteria.where(predicates);
+				
+		String sql = "SELECT * FROM estoque e INNER JOIN produto p ON p.id = e.produto_id";
+		if(!estoqueFilter.getProduto().getNome().equals(""))
+			sql += " WHERE p.nome LIKE :nome";
 		
-		TypedQuery<Estoque> query = manager.createQuery(criteria);
+		Query query = manager.createNativeQuery(sql, Estoque.class);
 		
-		//adicionarRestricoesDePaginacao(query, pageable);
+		if(!estoqueFilter.getProduto().getNome().equals(""))
+			query.setParameter("nome", "%"+estoqueFilter.getProduto().getNome()+"%");
 		
-		return query.getResultList(); 
+		
+		List<Estoque> dados =  query.getResultList();
+		
+		return dados; 
 	}
 
 	private Predicate[] criarRestricoes(EstoqueFilter estoqueFilter, CriteriaBuilder builder, Root<Estoque> root) {
 		List<Predicate> predicates	= new ArrayList<>();
 		
-		if(!StringUtils.isEmpty(estoqueFilter.getNome()))
+		if(!StringUtils.isEmpty(estoqueFilter.getProduto().getNome()))
 			predicates.add(builder.like(
-					builder.lower(root.get("nome")), 
-					"%"+ estoqueFilter.getNome().toLowerCase()+ "%"));
-		if(estoqueFilter.getEstoque() != null && estoqueFilter.getEstoque() > 0)
+					builder.lower(root.get("produto.nome")), 
+					"%"+ estoqueFilter.getProduto().getNome().toLowerCase()+ "%"));
+		if( estoqueFilter.getEstoque() > 0)
 			predicates.add(builder.equal(root.get("estoque"), estoqueFilter.getEstoque()));
-		if(estoqueFilter.getGondula() != null && estoqueFilter.getGondula() > 0)
-			predicates.add(builder.equal(root.get("gondola"), estoqueFilter.getGondula()));
-		if(estoqueFilter.getEstoqueMinimo() != null && estoqueFilter.getEstoqueMinimo() > 0)
-			predicates.add(builder.equal(root.get("estoqueMinimo"), estoqueFilter.getEstoqueMinimo()));
 		
 		
 		return predicates.toArray(new Predicate[predicates.size()]);
