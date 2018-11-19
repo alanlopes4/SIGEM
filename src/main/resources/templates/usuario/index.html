@@ -161,8 +161,11 @@
 						<td>
 							<div class="btn-group pull-right">
 								<a class="btn btn-sm btn-warning" th:href="@{/sigem/usuarios/detalhes/{id}(id=${usuario.id})}" >Detalhes</a>
-                                <a sec:authorize="hasRole('ROLE_USUARIOS_EDITAR')" class="btn btn-sm btn-primary" th:href="@{/sigem/usuarios/editar/{id}(id=${usuario.id})}" >Editar</a>
-                                <button id="excluir" sec:authorize="hasRole('ROLE_USUARIOS_EXCLUIR')" type="button" th:value="${usuario.id}" class="btn btn-sm btn-danger"  data-toggle="modal"  data-target="#confirmacaoModal">
+                                <a th:if="${usuario.isAtivo() eq 1}" sec:authorize="hasRole('ROLE_USUARIOS_EDITAR')" class="btn btn-sm btn-primary" th:href="@{/sigem/usuarios/editar/{id}(id=${usuario.id})}" >Editar</a>
+                                
+                                <button id="excluir" sec:authorize="hasRole('ROLE_USUARIOS_EXCLUIR')"
+                                 th:if="${usuario.isAtivo() eq 1}"
+                                 type="button" th:value="${usuario.id}" class="btn btn-sm btn-danger"  data-toggle="modal"  data-target="#confirmacaoModal">
 									Excluir
 								</button>
                            </div>

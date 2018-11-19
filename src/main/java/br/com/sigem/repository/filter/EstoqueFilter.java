@@ -6,9 +6,9 @@ import br.com.sigem.model.Produto;
 public class EstoqueFilter {
 	
 	private Long id;
-	private int gondola;
-	private int estoque;
-	private int estoqueMinimo;
+	private Integer gondola;
+	private Integer estoque;
+	private Integer estoqueMinimo;
 	private String mensagem;
 	
 	private int adicionadaGondola;
@@ -26,16 +26,16 @@ public class EstoqueFilter {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getGondola() {
+	public Integer getGondola() {
 		return gondola;
 	}
-	public void setGondola(int gondola) {
+	public void setGondola(Integer gondola) {
 		this.gondola = gondola;
 	}
-	public int getEstoque() {
+	public Integer getEstoque() {
 		return estoque;
 	}
-	public void setEstoque(int estoque) {
+	public void setEstoque(Integer estoque) {
 		this.estoque = estoque;
 	}
 	
@@ -45,31 +45,31 @@ public class EstoqueFilter {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	public int getAdicionadaGondola() {
+	public Integer getAdicionadaGondola() {
 		return adicionadaGondola;
 	}
-	public void setAdicionadaGondola(int adicionadaGondola) {
+	public void setAdicionadaGondola(Integer adicionadaGondola) {
 		this.adicionadaGondola = adicionadaGondola;
 	}
 	
-	public int getRetiradoGondola() {
+	public Integer getRetiradoGondola() {
 		return retiradoGondola;
 	}
-	public void setRetiradoGondola(int retiradoGondola) {
+	public void setRetiradoGondola(Integer retiradoGondola) {
 		this.retiradoGondola = retiradoGondola;
 	}
-	public int getEstoqueMinimo() {
+	public Integer getEstoqueMinimo() {
 		return estoqueMinimo;
 	}
-	public void setEstoqueMinimo(int estoqueMinimo) {
+	public void setEstoqueMinimo(Integer estoqueMinimo) {
 		this.estoqueMinimo = estoqueMinimo;
 	}
 	
-	public void descontarQuantidade(int quantidade) {
+	public void descontarQuantidade(Integer quantidade) {
 		this.estoque -= quantidade;
 	}
 	
-	public void alterarQuantidade(int quantidade) {
+	public void alterarQuantidade(Integer quantidade) {
 		this.estoque += quantidade;
 	}
 	
