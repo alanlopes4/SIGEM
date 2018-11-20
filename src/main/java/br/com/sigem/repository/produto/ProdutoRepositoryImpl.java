@@ -1,6 +1,8 @@
 package br.com.sigem.repository.produto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,6 +16,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.util.StringUtils;
 
 import br.com.sigem.model.Produto;
+import br.com.sigem.model.relatorio.EntradaProduto;
 import br.com.sigem.repository.filter.ProdutoFilter;
 
 public class ProdutoRepositoryImpl implements ProdutoRepositoryQuery{
@@ -38,7 +41,35 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryQuery{
 		return query.getResultList(); 
 	}
 
-
+	@Override
+	public List<Produto> filtrarValidade(ProdutoFilter produtoFilter) {
+		CriteriaBuilder builder =  manager.getCriteriaBuilder();
+		CriteriaQuery<Produto> criteria = builder.createQuery(Produto.class);
+		
+		Root<Produto> root = criteria.from(Produto.class);
+		
+		Calendar rightNow = Calendar.getInstance();
+		String month = String.valueOf(rightNow.get(Calendar.MONTH) + 1);
+		LocalDate dataInicio;
+		LocalDate dataFim;
+		if (month.equals("10") || month.equals("11") || month.equals("12")) {
+			String date = "2018-" + month + "-01";
+			dataInicio = LocalDate.parse(date);
+			date = "2018-" + month + "-30";
+			dataFim = LocalDate.parse(date);
+		}else {
+			String date = "2018-0" + month + "-01";
+			dataInicio = LocalDate.parse(date);
+			date = "2018-0" + month + "-30";
+			dataFim = LocalDate.parse(date);
+		}
+		Predicate[] predicates = criarRestricoesValidade(dataInicio, dataFim, produtoFilter, builder, root);
+		criteria.where(predicates);
+		
+		TypedQuery<Produto> query = manager.createQuery(criteria);
+				
+		return query.getResultList(); 
+	}
 	
 
 
@@ -82,6 +113,18 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryQuery{
 		predicates.add(builder.equal(root.get("ativo"), 1));
 		
 		
+		return predicates.toArray(new Predicate[predicates.size()]);
+	}
+	
+	private Predicate[] criarRestricoesValidade(LocalDate dataInicio, LocalDate dataFim, ProdutoFilter produtoFilter, CriteriaBuilder builder, Root<Produto> root) {
+		List<Predicate> predicates	= new ArrayList<>();
+
+		if(dataInicio != null && dataFim != null) {
+			predicates.add(builder.greaterThanOrEqualTo(root.get("validade"), dataInicio));
+			predicates.add(builder.lessThanOrEqualTo(root.get("validade"), dataFim));
+		}
+		
+	
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}
 	

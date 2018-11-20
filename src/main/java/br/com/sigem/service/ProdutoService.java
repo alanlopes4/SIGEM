@@ -30,7 +30,6 @@ public class ProdutoService {
 	private EstoqueService estoqueService;
 	
 	
-	
 	public List<Produto> listaTodos() {
 		return produtoRepository.findAll();
 	}
@@ -82,6 +81,9 @@ public class ProdutoService {
 	    	return produtoRepository.filtrar(produtoFilter);
 	   }
 	
+	public List<Produto> filtrarValidade(ProdutoFilter produtoFilter){
+    	return produtoRepository.filtrarValidade(produtoFilter);
+   }
 	public boolean verificarValidade(LocalDate validade) {
 		return validade.isBefore(LocalDate.now());
 	}
