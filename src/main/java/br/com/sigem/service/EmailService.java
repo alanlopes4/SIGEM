@@ -8,6 +8,7 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import br.com.sigem.model.Email;
+import br.com.sigem.model.Usuario;
 
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
@@ -41,6 +42,23 @@ public class EmailService {
 	        } catch (Exception e){
 	            throw new RuntimeException(e);
 	        }
+	    }
+	    
+	    public Object[] sendEmail(Email email, Usuario usuario) {
+			
+			String mensagem = "";
+			
+			if(usuario == null) {
+				mensagem = "Usuário não existente";
+			}
+			else if (usuario != null) {
+				mensagem = "Email enviado";
+			}
+
+			Object[] obj = new Object[1];
+			obj[0] = mensagem;
+			
+			return obj;
 	    }
 	
 }
