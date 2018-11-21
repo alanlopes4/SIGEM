@@ -27,7 +27,7 @@ public class EstoqueGondolaTeste extends SigemApplicationTests{
 	public void atualizarEstoque_ct2() {
 		Object resultado[] = estoqueService.atualizarEstoque(15, 20, 10);
 		
-		Assertions.assertThat(resultado[0]).isEqualTo("Quantidade a retirar maior do que a quantidade disponível no estoque");
+		Assertions.assertThat(resultado[0]).isEqualTo("Quantidade a retirar maior do");
 		Assertions.assertThat((int)resultado[1] == 15);
 		
 	}

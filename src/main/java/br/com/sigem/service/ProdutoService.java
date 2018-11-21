@@ -77,7 +77,8 @@ public class ProdutoService {
 	
 	public void remover(Long id) {
 	    	Produto produto = buscarPorId(id);
-	    	produtoRepository.delete(produto);
+	    	produto.setAtivo(0);
+	    	produtoRepository.saveAndFlush(produto);
 	   }
 	    
 	    

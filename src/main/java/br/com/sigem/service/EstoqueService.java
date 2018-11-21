@@ -46,10 +46,10 @@ public class EstoqueService {
 	public Estoque atualizar(@Valid Estoque estoque) {
 	
 		Object resultadoEstoque[] = atualizarEstoque(estoque.getEstoque(), estoque.getAdicionadaGondola(), estoque.getEstoqueMinimo());
-		Object resultadoGondola[] = atualizarGondola(estoque.getGondola(), estoque.getAdicionadaGondola());
+		Object resultadoGondola[] = atualizarGondola(estoque.getGondola(), estoque.getAdicionadaGondola(), estoque.getEstoque());
 			
 			
-			estoque.setMensagem((String) resultadoEstoque[0]);
+			estoque.setMensagem((String) resultadoGondola[0]);
 			estoque.setEstoque((int) resultadoEstoque[1]);
 			estoque.setGondola((int) resultadoGondola[1]);
 			
@@ -93,13 +93,15 @@ public class EstoqueService {
 		
 	}
 	
-	private Object[]  atualizarGondola(int quantidade_atual_gondola, int quantidade_adicionada) {
+	public Object[]  atualizarGondola(int quantidade_atual_gondola, int quantidade_adicionada, int quantidade_maxima) {
 		String mensagem = "";
 		int resultado = quantidade_atual_gondola;
-			if(quantidade_atual_gondola < 0)
-				mensagem = "Quantidade na gôndola inválida";
+			if(quantidade_atual_gondola == 0 && quantidade_adicionada == 0)
+				mensagem = "Abastecer gôndola";
 			else if(quantidade_adicionada < 0)
 				mensagem = "Quantidade a adicionar inválida";
+			else if(quantidade_atual_gondola + quantidade_adicionada > quantidade_maxima)
+				mensagem = "Quantidade adicionada superior ao máximo suportado";
 			else
 				resultado = quantidade_atual_gondola + quantidade_adicionada;
 			
