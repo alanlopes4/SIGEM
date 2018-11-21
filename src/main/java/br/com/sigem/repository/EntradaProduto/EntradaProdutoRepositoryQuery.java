@@ -9,5 +9,8 @@ import br.com.sigem.model.relatorio.EntradaProduto;
 public interface EntradaProdutoRepositoryQuery {
 
 	public List<EntradaProduto> filtrar(LocalDate dataInicio, LocalDate dataFim);
+	
+	public List<Object[]> filtrarGrafico(LocalDate dataInicio, LocalDate dataFim);	
+	
 	public EntradaProduto filtrarPorProduto(Produto produto);
 }

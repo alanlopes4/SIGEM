@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -34,7 +36,7 @@ public class Produto {
 	@NotBlank(message = "Nome é uma informação obrigatória")
 	private String nome;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	@NotBlank(message = "Lote do produto é uma informação obrigatória")
 	private String lote;
 	
