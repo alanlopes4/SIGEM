@@ -68,7 +68,7 @@ public class ResetarSenhaTeste extends SigemApplicationTests {
 		TokenResetarSenha token = new TokenResetarSenha();
 		token.setToken(UUID.randomUUID().toString());
 		token.setUsuario(usuario);
-		token.setDataExpiracao(0);
+		token.setDataExpiracao(-1);
 		usuario.setTokenResetarSenha(token.getToken());
 		
 		Object[] resultado = usuarioService.updatePassword(token, usuario);
