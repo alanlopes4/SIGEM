@@ -51,7 +51,7 @@ public class EmailService {
 			if(usuario == null) {
 				mensagem = "Usuário não existente";
 			}
-			else if (usuario != null) {
+			else {
 				mensagem = "Email enviado";
 			}
 

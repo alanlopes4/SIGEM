@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.sigem.model.TokenResetarSenha;
 import br.com.sigem.model.Usuario;
 import br.com.sigem.repository.UsuarioRepository;
 import br.com.sigem.repository.filter.UsuarioFilter;
@@ -90,8 +91,27 @@ public class UsuarioService {
 			usuario.get().setSenha(novaSenha);
 			usuarioRepository.saveAndFlush(usuario.get());
 		}
+	}
+	
+	public Object[] updatePassword(TokenResetarSenha token, Usuario usuario) {
+		
+		String mensagem = "";
+		
+		if(token.getToken() == null) {
+			mensagem = "Token não existe";
+		}
+		else if(token.isExpired()) {
+			mensagem = "Token expirado";
+		}
+		else if(token.getToken().equals(usuario.gettokenResetarSenha())) {
+			mensagem = "Senha alterada";
+		}
+			
+		Object[] obj = new Object[2];
+		obj[0] = mensagem;
+			
+		return obj;
 		
 	}
-  
 	
 }
