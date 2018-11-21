@@ -46,7 +46,9 @@ public class ProdutoService {
         return produtoRepository.findById(id).orElse(null);
     }
 	
-	 public Produto adicionar(@Valid Produto produto) {
+	//Funcionalidade de cadastrar produto, além de salvar as informações para a criação dos relatórios de Histórico de preços e Entrada de Produto.
+	//Uma vez que é necessário salvar as informações antes de qualquer edição.
+	public Produto adicionar(@Valid Produto produto) {
 		 	produto.setAtivo(1);
 	        Produto p = produtoRepository.saveAndFlush(produto);
 	        if(p != null) {
@@ -86,9 +88,11 @@ public class ProdutoService {
 	    	return produtoRepository.filtrar(produtoFilter);
 	   }
 	
+	//Buscar produtos pericíveis para listar os que irão vencer no mês da consulta
 	public List<Produto> filtrarValidade(ProdutoFilter produtoFilter){
     	return produtoRepository.filtrarValidade(produtoFilter);
    }
+	//Verificar se não está sendo cadastrado um produto vencido.
 	public boolean verificarValidade(LocalDate validade) {
 		return validade.isBefore(LocalDate.now());
 	}
