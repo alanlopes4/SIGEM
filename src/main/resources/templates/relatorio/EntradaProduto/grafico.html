@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sf="http://www.springframework.org/tags/form"
+    xmlns:s="http://www.springframework.org/tags"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}" >
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div id="wrap" class="container">
+			<div id="main">
+				<div class="jumbotron">
+					
+					<div class="row text-left">
+							<h3 >Entrada de produtos - <span th:text="${dataInicio}"></span> à <span th:text="${dataFim}"></span></h3>
+						</div>
+					</div>
+						<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+					<hr/>
+					<div class="row justify-content-center">
+						<a id="alert" class="btn btn-lg btn-primary btn-block" th:href="@{/sigem/relatorios/entradaProduto}" >
+									Voltar </a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Funções para construção dos graficos -->
+			<script th:inline="javascript">
+					
+				window.onload = function(){
+							var dps = [];
+							var i = 0;
+							/*<![CDATA[*/
+								/*[# th:each="dado : ${dados}"]*/
+										console.log("valor " + /*[[${dados[0]}]]*/ );
+										var obj = {};
+										obj['label'] = /*[[${dado[0]}]]*/;
+										obj['y'] = parseFloat(/*[[${dado[1]}]]*/ 0);
+										dps.push(obj);
+								    	i++;
+								/*[/]*/
+							/*]]>*/
+					    	var chart = new CanvasJS.Chart("chartContainer", {
+								animationEnabled: true,
+								exportEnabled: true,	
+								title:{
+									text: ""
+								},
+								data: [{
+									type: "column", 
+									dataPoints: dps
+								}]
+							});
+							chart.render();
+						}		
+			</script>
+	</section>
+</body>
+
+</html>

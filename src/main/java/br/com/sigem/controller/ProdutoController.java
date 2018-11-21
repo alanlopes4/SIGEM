@@ -54,6 +54,8 @@ public class ProdutoController {
     	if(produto.getValidade() != null && produtoService.verificarValidade(produto.getValidade())){
     		result.addError(new FieldError("produto", "validade", "Data inferior ao data atual"));
     	}
+    	if(produtoService.findByLote(produto.getLote()).size() > 0)
+    		result.addError(new FieldError("produto", "lote", "Já existe um produto com esse lote"));
          
         if(result.hasErrors()) {
             return add(produto);

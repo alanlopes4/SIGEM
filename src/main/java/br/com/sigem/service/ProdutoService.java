@@ -38,6 +38,10 @@ public class ProdutoService {
 		return produtoRepository.findByAtivo(1);
 	}
 	
+	public List<Produto> findByLote(String lote){
+		return produtoRepository.findByLote(lote);
+	}
+	
 	public Produto buscarPorId(Long id) {
         return produtoRepository.findById(id).orElse(null);
     }
