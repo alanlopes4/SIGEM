@@ -98,13 +98,13 @@ public class UsuarioService {
 		String mensagem = "";
 		
 		if(token.getToken() == null) {
-			mensagem = "Token não existe";
+			mensagem = "Não foi possível encontrar o token para resetar sua senha.";
 		}
 		else if(token.isExpired()) {
-			mensagem = "Token expirado";
+			mensagem = "Token expirou, por favor faça uma nova requisição.";
 		}
 		else if(token.getToken().equals(usuario.gettokenResetarSenha())) {
-			mensagem = "Senha alterada";
+			mensagem = "Senha alterada com sucesso";
 		}
 			
 		Object[] obj = new Object[2];

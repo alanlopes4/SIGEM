@@ -58,7 +58,7 @@ public class ResetarSenhaTeste extends SigemApplicationTests {
         
         Object[] resultado = usuarioService.updatePassword(token, usuario);
         
-        Assertions.assertThat(resultado[0]).isEqualTo("Senha alterada");
+        Assertions.assertThat(resultado[0]).isEqualTo("Senha alterada com sucesso");
 	}
 	
 	@Test 
@@ -73,7 +73,7 @@ public class ResetarSenhaTeste extends SigemApplicationTests {
 		
 		Object[] resultado = usuarioService.updatePassword(token, usuario);
 		
-		Assertions.assertThat(resultado[0]).isEqualTo("Token expirado");
+		Assertions.assertThat(resultado[0]).isEqualTo("Token expirou, por favor faça uma nova requisição.");
 	}
 	
 	@Test 
@@ -86,7 +86,7 @@ public class ResetarSenhaTeste extends SigemApplicationTests {
         
         Object[] resultado = usuarioService.updatePassword(token, usuario);
         
-        Assertions.assertThat(resultado[0]).isEqualTo("Token não existe");
+        Assertions.assertThat(resultado[0]).isEqualTo("Não foi possível encontrar o token para resetar sua senha.");
 	}
 	
 }
