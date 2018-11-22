@@ -49,10 +49,10 @@ public class EmailService {
 			String mensagem = "";
 			
 			if(usuario == null) {
-				mensagem = "Usuário não existente";
+				mensagem = "Email não encontrado";
 			}
 			else {
-				mensagem = "Email enviado";
+				mensagem = "Verifique seu email";
 			}
 
 			Object[] obj = new Object[1];

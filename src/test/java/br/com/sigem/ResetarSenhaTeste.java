@@ -30,7 +30,7 @@ public class ResetarSenhaTeste extends SigemApplicationTests {
 		
 		Object[] resultado = emailService.sendEmail(email, usuario);
 		
-		Assertions.assertThat(resultado[0]).isEqualTo("Email enviado");
+		Assertions.assertThat(resultado[0]).isEqualTo("Verifique seu email");
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class ResetarSenhaTeste extends SigemApplicationTests {
 		
 		Object[] resultado = emailService.sendEmail(email, usuario);
 		
-		Assertions.assertThat(resultado[0]).isEqualTo("Usuário não existente");
+		Assertions.assertThat(resultado[0]).isEqualTo("Email não encontrado");
 	}
 	
 	@Test 
